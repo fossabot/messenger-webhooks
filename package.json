@@ -2,7 +2,7 @@
     "name": "@pyyupsk/messenger-webhooks",
     "version": "0.0.1",
     "type": "module",
-    "description": "",
+    "description": "A simple and easy-to-use library for building Facebook Messenger bots with webhooks.",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/pyyupsk/messenger-webhooks.git"
@@ -18,25 +18,31 @@
         "format:fix": "prettier --write . --list-different",
         "knip": "knip",
         "knip:fix": "knip --fix",
-        "lint": "eslint src"
+        "lint": "eslint src",
+        "test": "vitest"
     },
     "dependencies": {
+        "body-parser": "^1.20.2",
         "chalk": "^5.3.0",
         "express": "^4.19.2",
         "undici": "^6.19.8"
     },
     "devDependencies": {
         "@eslint/js": "^9.9.1",
+        "@types/body-parser": "^1.19.5",
         "@types/express": "^4.17.21",
         "@types/node": "^22.5.2",
         "eslint": "^9.9.1",
+        "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-perfectionist": "^3.3.0",
+        "eslint-plugin-prettier": "^5.2.1",
         "globals": "^15.9.0",
         "knip": "^5.29.1",
         "prettier": "^3.3.3",
         "prettier-plugin-pkg": "^0.18.1",
         "tsup": "^8.2.4",
         "typescript": "^5.5.4",
-        "typescript-eslint": "^8.4.0"
+        "typescript-eslint": "^8.4.0",
+        "vitest": "^2.0.5"
     }
 }

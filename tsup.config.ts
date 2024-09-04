@@ -2,15 +2,15 @@ import { defineConfig } from 'tsup';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
-export default defineConfig({
+export default defineConfig(({ watch = false }) => ({
     clean: true,
     dts: true,
-    entry: ['src/index.ts'],
+    entry: {
+        index: 'src/index.ts',
+    },
+    external: [],
     format: ['cjs', 'esm'],
     minify: isProduction,
-    sourcemap: true,
-    splitting: false,
-    treeshake: true,
-    outDir: 'dist',
-    target: 'es2018',
-});
+    sourcemap: isProduction,
+    watch,
+}));

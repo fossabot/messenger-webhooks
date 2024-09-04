@@ -1,5 +1,7 @@
 import pluginJs from '@eslint/js';
+import eslintConfigPrettier from 'eslint-config-prettier';
 import perfectionist from 'eslint-plugin-perfectionist';
+import prettier from 'eslint-plugin-prettier';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
@@ -7,6 +9,7 @@ export default [
     {
         plugins: {
             perfectionist,
+            prettier,
         },
         rules: {
             'perfectionist/sort-imports': [
@@ -26,6 +29,7 @@ export default [
                 },
             ],
             '@typescript-eslint/consistent-type-imports': ['error', { prefer: 'type-imports' }],
+            'prettier/prettier': 'warn',
         },
     },
     {
@@ -40,4 +44,5 @@ export default [
     { languageOptions: { globals: globals.node } },
     pluginJs.configs.recommended,
     ...tseslint.configs.recommended,
+    eslintConfigPrettier,
 ];

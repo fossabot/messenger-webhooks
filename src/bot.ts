@@ -4,6 +4,7 @@ import type { Dispatcher } from 'undici';
 
 import { GRAPH_URL } from '@/constants';
 import { determineEventType, logger } from '@/utils';
+import bodyParser from 'body-parser';
 import chalk from 'chalk';
 import EventEmitter from 'events';
 import express from 'express';
@@ -46,7 +47,7 @@ export class Bot extends EventEmitter {
     }
 
     public async start(): Promise<void> {
-        this.server.use(express.json());
+        this.server.use(bodyParser.json());
 
         this.server.get(this.bot.endpoint, (req: Request, res: Response): void => {
             const {
@@ -88,8 +89,12 @@ export class Bot extends EventEmitter {
 
         this.server.listen(this.bot.port, async (): Promise<void> => {
             if (!this.bot.id || !this.bot.name) {
-                await this.getAppInfo().catch((error: unknown): void => {
-                    logger.error('Failed to get app info:', error);
+                await this.getAppInfo().catch((error): void => {
+                    if (error instanceof Error) {
+                        logger.error('Error getting app info:', error.message);
+                    } else {
+                        logger.error('Error getting app info:', String(error));
+                    }
                 });
             }
 
@@ -121,7 +126,7 @@ export class Bot extends EventEmitter {
             throw new Error(`HTTP error! status: ${statusCode}`);
         }
 
-        return body.json() as Promise<T>;
+        return body as T;
     }
 
     private async getAppInfo(): Promise<void> {
