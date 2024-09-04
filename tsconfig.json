@@ -1,0 +1,31 @@
+{
+    "compilerOptions": {
+        /* Base Options: */
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "target": "es2022",
+        "allowJs": true,
+        "resolveJsonModule": true,
+        "moduleDetection": "force",
+        "isolatedModules": true,
+        /* Strictness */
+        "strict": true,
+        "noUncheckedIndexedAccess": true,
+        "noImplicitOverride": true,
+        /* If transpiling with TypeScript: */
+        "module": "ESNext",
+        "moduleResolution": "Bundler",
+        "outDir": "dist",
+        /* AND if you're building for a library: */
+        "declaration": true,
+        /* If your code doesn't run in the DOM: */
+        "lib": ["es2022"],
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["src/*"],
+            "@pyyupsk/messenger-webhooks": ["src/index.ts"] // This is for the dev server
+        }
+    },
+    "include": ["src/**/*.ts", "dev/**/*.ts", "tsup.config.ts"],
+    "exclude": ["node_modules", "dist"]
+}
