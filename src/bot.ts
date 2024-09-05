@@ -1,6 +1,5 @@
 import type { EventType } from '@/types';
 import type { Express, Request, Response } from 'express';
-import type { Dispatcher } from 'undici';
 
 import { GRAPH_URL } from '@/constants';
 import { determineEventType, logger } from '@/utils';
@@ -8,7 +7,6 @@ import bodyParser from 'body-parser';
 import chalk from 'chalk';
 import EventEmitter from 'events';
 import express from 'express';
-import { request } from 'undici';
 
 interface Options {
     accessToken: string;
@@ -46,7 +44,11 @@ export class Bot extends EventEmitter {
         };
     }
 
-    public async start(): Promise<void> {
+    /**
+     * Starts the bot server and initializes the webhook endpoints.
+     * @returns {void}
+     */
+    public start(): void {
         this.server.use(bodyParser.json());
 
         this.server.get(this.bot.endpoint, (req: Request, res: Response): void => {
@@ -106,12 +108,12 @@ export class Bot extends EventEmitter {
         });
     }
 
-    private async sendRequest<T>(
-        method: Dispatcher.HttpMethod,
+    public async sendRequest<T>(
+        method: 'GET' | 'POST',
         endpoint: string,
         requestBody?: Record<string, unknown>,
     ): Promise<T> {
-        const { statusCode, body } = await request(
+        const response = await fetch(
             `${GRAPH_URL}/${this.bot.version}/${endpoint}?access_token=${this.accessToken}`,
             {
                 method: method,
@@ -122,11 +124,11 @@ export class Bot extends EventEmitter {
             },
         );
 
-        if (statusCode !== 200) {
-            throw new Error(`HTTP error! status: ${statusCode}`);
+        if (!response.ok) {
+            throw new Error(`HTTP error!: ${response.statusText}`);
         }
 
-        return body as T;
+        return response.json() as Promise<T>;
     }
 
     private async getAppInfo(): Promise<void> {
@@ -140,10 +142,64 @@ export class Bot extends EventEmitter {
         this.bot.name = response.name;
     }
 
+    /**
+     * Sends a message to a recipient with custom message object.
+     * @param {string} recipientId - The ID of the recipient.
+     * @param {object} message - The message object to send.
+     * @returns {Promise<void>}
+     */
+    public async sendMessage(recipientId: string, message: object): Promise<void> {
+        return await this.sendRequest('POST', '/me/messages', {
+            recipient: { id: recipientId },
+            message,
+        });
+    }
+
+    /**
+     * Sends a text message to a recipient.
+     * @param {string} recipientId - The ID of the recipient.
+     * @param {string} message - The text message to send.
+     * @returns {Promise<void>}
+     */
     public async sendTextMessage(recipientId: string, message: string): Promise<void> {
-        await this.sendRequest('POST', '/me/messages', {
+        return await this.sendRequest('POST', '/me/messages', {
             recipient: { id: recipientId },
             message: { text: message },
+        });
+    }
+
+    /**
+     * Sends an attachment to a recipient.
+     * @param {string} recipientId - The ID of the recipient.
+     * @param {string} type - The type of attachment to send. (image, video, audio, file)
+     * @param {string} url - The URL of the attachment to send.
+     * @param {boolean} isReusable - Whether the attachment is reusable.
+     * @returns {Promise<void>}
+     */
+    public async sendAttachment(
+        recipientId: string,
+        type: 'image' | 'video' | 'audio' | 'file',
+        url: string,
+        isReusable: boolean,
+    ): Promise<void> {
+        return await this.sendRequest('POST', 'me/messages', {
+            recipient: { id: recipientId },
+            message: {
+                attachment: {
+                    type,
+                    payload: {
+                        url,
+                        is_reusable: isReusable,
+                    },
+                },
+            },
+        });
+    }
+
+    public async setTyping(recipientId: string, isTyping: boolean): Promise<void> {
+        return await this.sendRequest('POST', '/me/messages', {
+            recipient: { id: recipientId },
+            sender_action: isTyping ? 'typing_on' : 'typing_off',
         });
     }
 }

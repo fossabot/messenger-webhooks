@@ -16,9 +16,6 @@ importers:
             express:
                 specifier: ^4.19.2
                 version: 4.19.2
-            undici:
-                specifier: ^6.19.8
-                version: 6.19.8
         devDependencies:
             '@eslint/js':
                 specifier: ^9.9.1
@@ -2954,13 +2951,6 @@ packages:
                 integrity: sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw==,
             }
 
-    undici@6.19.8:
-        resolution:
-            {
-                integrity: sha512-U8uCCl2x9TK3WANvmBavymRzxbfFYG+tAu+fgx3zxQy3qdagQqBLwJVrdyO1TBfUXvfKveMKJZhpvUYoOjM+4g==,
-            }
-        engines: { node: '>=18.17' }
-
     unpipe@1.0.0:
         resolution:
             {
@@ -4742,8 +4732,6 @@ snapshots:
     typescript@5.5.4: {}
 
     undici-types@6.19.8: {}
-
-    undici@6.19.8: {}
 
     unpipe@1.0.0: {}
 
