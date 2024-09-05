@@ -3,10 +3,9 @@ import type { Express, Request, Response } from 'express';
 
 import { GRAPH_URL } from '@/constants';
 import { determineEventType, logger } from '@/utils';
-import bodyParser from 'body-parser';
 import chalk from 'chalk';
 import EventEmitter from 'events';
-import express from 'express';
+import express, { json } from 'express';
 
 interface Options {
     accessToken: string;
@@ -29,6 +28,10 @@ export class Bot extends EventEmitter {
         version: string;
     };
 
+    /**
+     * Creates an instance of the Bot class.
+     * @param {Options} options - The configuration options for the bot.
+     */
     constructor(options: Options) {
         super();
 
@@ -61,7 +64,7 @@ export class Bot extends EventEmitter {
      * @returns {void}
      */
     public start(): void {
-        this.server.use(bodyParser.json());
+        this.server.use(json());
 
         this.server.get(this.bot.endpoint, (req: Request, res: Response): void => {
             const {
@@ -104,11 +107,10 @@ export class Bot extends EventEmitter {
         this.server.listen(this.bot.port, async (): Promise<void> => {
             if (!this.bot.id || !this.bot.name) {
                 await this.getAppInfo().catch((error): void => {
-                    if (error instanceof Error) {
-                        logger.error('Error getting app info:', error.message);
-                    } else {
-                        logger.error('Error getting app info:', String(error));
-                    }
+                    logger.error(
+                        'Error getting app info:',
+                        error instanceof Error ? error.message : String(error),
+                    );
                 });
             }
 
@@ -124,7 +126,7 @@ export class Bot extends EventEmitter {
      * Sends a request to the Facebook Graph API.
      * @param {string} method - The HTTP method to use.
      * @param {string} endpoint - The endpoint to send the request to.
-     * @param {Record<string, unknown>} requestBody - The request body to send.
+     * @param {Record<string, unknown>} [requestBody] - The request body to send.
      * @returns {Promise<T>} - The response from the Facebook Graph API.
      */
     public async sendRequest<T>(
@@ -135,22 +137,20 @@ export class Bot extends EventEmitter {
         const response = await fetch(
             `${GRAPH_URL}/${this.bot.version}/${endpoint}?access_token=${this.accessToken}`,
             {
-                method: method,
+                method,
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: requestBody ? JSON.stringify(requestBody) : undefined,
             },
         );
-        const json = await response.json();
 
         if (!response.ok) {
-            throw new Error(`HTTP error!: ${response.statusText}`, {
-                cause: json,
-            });
+            const errorData = await response.json();
+            throw new Error(`HTTP error!: ${response.statusText}`, { cause: errorData });
         }
 
-        return json as Promise<T>;
+        return response.json() as Promise<T>;
     }
 
     private async getAppInfo(): Promise<void> {
@@ -171,7 +171,7 @@ export class Bot extends EventEmitter {
      * @returns {Promise<void>}
      */
     public async sendMessage(recipientId: string, message: object): Promise<void> {
-        return await this.sendRequest('POST', '/me/messages', {
+        await this.sendRequest('POST', '/me/messages', {
             recipient: { id: recipientId },
             message,
         });
@@ -188,7 +188,7 @@ export class Bot extends EventEmitter {
         if (message.length > 2000) {
             throw new Error('Message exceeds 2000 character limit');
         }
-        return await this.sendRequest('POST', '/me/messages', {
+        await this.sendRequest('POST', '/me/messages', {
             recipient: { id: recipientId },
             message: { text: message },
         });
@@ -199,7 +199,7 @@ export class Bot extends EventEmitter {
      * @param {string} recipientId - The ID of the recipient.
      * @param {'audio' | 'file' | 'image' | 'video' | 'template'} type - The type of attachment to send.
      * @param {string} url - The URL of the attachment to send.
-     * @param {boolean} isReusable - Whether the attachment is reusable. Defaults to true.
+     * @param {boolean} [isReusable=true] - Whether the attachment is reusable.
      * @returns {Promise<void>}
      */
     public async sendAttachment(
@@ -208,7 +208,7 @@ export class Bot extends EventEmitter {
         url: string,
         isReusable: boolean = true,
     ): Promise<void> {
-        return await this.sendRequest('POST', 'me/messages', {
+        await this.sendRequest('POST', 'me/messages', {
             recipient: { id: recipientId },
             message: {
                 attachment: {
@@ -229,7 +229,7 @@ export class Bot extends EventEmitter {
      * @returns {Promise<void>}
      */
     public async setTyping(recipientId: string, isTyping: boolean): Promise<void> {
-        return await this.sendRequest('POST', '/me/messages', {
+        await this.sendRequest('POST', '/me/messages', {
             recipient: { id: recipientId },
             sender_action: isTyping ? 'typing_on' : 'typing_off',
         });
