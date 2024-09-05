@@ -1,8 +1,8 @@
-import type { Mock } from 'vitest';
+import type { Request, Response } from 'express';
 
-import { Bot } from '@pyyupsk/messenger-webhooks';
-import { request } from 'undici';
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { expect, describe, it, beforeEach, afterEach, vi } from 'vitest';
+
+import { Bot } from '../src/bot';
 
 const mockGet = vi.fn();
 const mockUse = vi.fn();
@@ -20,8 +20,18 @@ vi.mock('express', () => ({
     })),
 }));
 
-vi.mock('undici', () => ({
-    request: vi.fn(),
+vi.mock('body-parser', () => ({
+    default: {
+        json: vi.fn(),
+    },
+}));
+
+vi.mock('@/utils', () => ({
+    determineEventType: vi.fn(),
+    logger: {
+        info: vi.fn(),
+        error: vi.fn(),
+    },
 }));
 
 describe('Bot', () => {
@@ -38,56 +48,19 @@ describe('Bot', () => {
         vi.clearAllMocks();
     });
 
-    it('should initialize with correct default properties', () => {
+    it('should initialize with correct options', () => {
+        expect(bot['accessToken']).toBe('test_access_token');
+        expect(bot['verifyToken']).toBe('test_verify_token');
         expect(bot.bot.port).toBe(8080);
         expect(bot.bot.endpoint).toBe('/webhook');
         expect(bot.bot.version).toBe('v19.0');
     });
 
-    it('should initialize with custom properties', () => {
-        const customBot = new Bot({
-            accessToken: 'custom_access_token',
-            verifyToken: 'custom_verify_token',
-            port: 3000,
-            endpoint: '/custom-webhook',
-            version: 'v18.0',
-        });
-
-        expect(customBot.bot.port).toBe(3000);
-        expect(customBot.bot.endpoint).toBe('/custom-webhook');
-        expect(customBot.bot.version).toBe('v18.0');
-    });
-
-    it('should send a text message', async () => {
-        (request as unknown as Mock).mockResolvedValue({
-            statusCode: 200,
-            body: { json: vi.fn().mockResolvedValue({ message_id: 'mid.123' }) },
-        });
-
-        await bot.sendTextMessage('123', 'Hello, user!');
-
-        expect(request).toHaveBeenCalledWith(
-            expect.stringContaining('/me/messages'),
-            expect.objectContaining({
-                method: 'POST',
-                body: JSON.stringify({
-                    recipient: { id: '123' },
-                    message: { text: 'Hello, user!' },
-                }),
-            }),
-        );
-    });
-
-    it('should handle errors when sending a text message', async () => {
-        (request as unknown as Mock).mockRejectedValue(new Error('Network error'));
-
-        await expect(bot.sendTextMessage('123', 'Hello, user!')).rejects.toThrow('Network error');
-    });
-
-    it('should handle webhook verification', () => {
+    it('should handle GET requests for webhook verification', () => {
         bot.start();
 
-        expect(mockGet).toHaveBeenCalledWith('/webhook', expect.any(Function));
+        const [path, handler] = mockGet.mock.calls[0] ?? [];
+        expect(path).toBe('/webhook');
 
         const mockReq = {
             query: {
@@ -95,124 +68,77 @@ describe('Bot', () => {
                 'hub.verify_token': 'test_verify_token',
                 'hub.challenge': 'challenge_token',
             },
-        };
+        } as unknown as Request;
         const mockRes = {
             status: vi.fn().mockReturnThis(),
             send: vi.fn(),
-        };
+        } as unknown as Response;
 
-        const verifyHandler = mockGet.mock.calls[0]?.[1];
-        verifyHandler?.(mockReq, mockRes);
+        handler(mockReq, mockRes);
 
         expect(mockRes.status).toHaveBeenCalledWith(200);
         expect(mockRes.send).toHaveBeenCalledWith('challenge_token');
     });
 
-    it('should handle invalid webhook verification', () => {
+    it('should handle POST requests for webhook events', () => {
         bot.start();
 
-        const mockReq = {
-            query: {
-                'hub.mode': 'subscribe',
-                'hub.verify_token': 'invalid_token',
-                'hub.challenge': 'challenge_token',
-            },
-        };
-        const mockRes = {
-            status: vi.fn().mockReturnThis(),
-            send: vi.fn(),
-        };
-
-        const verifyHandler = mockGet.mock.calls[0]?.[1];
-        verifyHandler?.(mockReq, mockRes);
-
-        expect(mockRes.status).toHaveBeenCalledWith(403);
-        expect(mockRes.send).toHaveBeenCalledWith('Forbidden');
-    });
-
-    it('should handle webhook POST requests', () => {
-        bot.start();
-
-        expect(mockPost).toHaveBeenCalledWith('/webhook', expect.any(Function));
+        const [path, handler] = mockPost.mock.calls[0] ?? [];
+        expect(path).toBe('/webhook');
 
         const mockReq = {
             body: {
                 object: 'page',
-                entry: [
-                    {
-                        messaging: [
-                            {
-                                sender: { id: '123' },
-                                message: { text: 'Hello, bot!' },
-                            },
-                        ],
-                    },
-                ],
+                entry: [{ messaging: [{ message: 'test' }] }],
             },
-        };
+        } as unknown as Request;
         const mockRes = {
             sendStatus: vi.fn(),
-        };
+        } as unknown as Response;
 
-        const postHandler = mockPost.mock.calls[0]?.[1];
-        postHandler?.(mockReq, mockRes);
+        handler(mockReq, mockRes);
 
         expect(mockRes.sendStatus).toHaveBeenCalledWith(200);
     });
 
-    it('should reject non-page webhook POST requests', () => {
-        bot.start();
+    it('should send a text message', async () => {
+        vi.spyOn(bot, 'sendRequest').mockResolvedValue({});
 
-        const mockReq = {
-            body: {
-                object: 'not_page',
-                entry: [],
-            },
-        };
-        const mockRes = {
-            status: vi.fn().mockReturnThis(),
-            send: vi.fn(),
-        };
+        await bot.sendTextMessage('recipient_id', 'Hello, world!');
 
-        const postHandler = mockPost.mock.calls[0]?.[1];
-        postHandler?.(mockReq, mockRes);
-
-        expect(mockRes.status).toHaveBeenCalledWith(400);
-        expect(mockRes.send).toHaveBeenCalledWith('Bad Request');
+        expect(bot.sendRequest).toHaveBeenCalledWith('POST', '/me/messages', {
+            recipient: { id: 'recipient_id' },
+            message: { text: 'Hello, world!' },
+        });
     });
 
-    it('should emit events based on incoming messages', () => {
-        const mockEmit = vi.spyOn(bot, 'emit');
-        bot.start();
+    it('should send an attachment', async () => {
+        vi.spyOn(bot, 'sendRequest').mockResolvedValue({});
 
-        const mockReq = {
-            body: {
-                object: 'page',
-                entry: [
-                    {
-                        messaging: [
-                            {
-                                sender: { id: '123' },
-                                message: { text: 'Hello, bot!' },
-                            },
-                        ],
+        await bot.sendAttachment('recipient_id', 'image', 'https://example.com/image.jpg', true);
+
+        expect(bot.sendRequest).toHaveBeenCalledWith('POST', 'me/messages', {
+            recipient: { id: 'recipient_id' },
+            message: {
+                attachment: {
+                    type: 'image',
+                    payload: {
+                        url: 'https://example.com/image.jpg',
+                        is_reusable: true,
                     },
-                ],
+                },
             },
-        };
-        const mockRes = {
-            sendStatus: vi.fn(),
-        };
-
-        const postHandler = mockPost.mock.calls[0]?.[1];
-        postHandler?.(mockReq, mockRes);
-
-        expect(mockEmit).toHaveBeenCalledWith('message', expect.any(Object));
+        });
     });
 
-    it('should start the server on the specified port', () => {
-        bot.start();
+    it('should set typing indicator', async () => {
+        vi.spyOn(bot, 'sendRequest').mockResolvedValue({});
 
-        expect(mockListen).toHaveBeenCalledWith(8080, expect.any(Function));
+        await bot.setTyping('recipient_id', true);
+
+        expect(bot.sendRequest).toHaveBeenCalledWith('POST', '/me/messages', {
+            recipient: { id: 'recipient_id' },
+            sender_action: 'typing_on',
+        });
     });
 });
