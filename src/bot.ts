@@ -35,6 +35,18 @@ export class Bot extends EventEmitter {
         this.server = express();
         this.accessToken = options.accessToken;
         this.verifyToken = options.verifyToken;
+
+        if (!options.accessToken) {
+            logger.error(
+                'Access token is required: https://developers.facebook.com/docs/messenger-platform/getting-started/quick-start',
+            );
+        }
+        if (!options.verifyToken) {
+            logger.error(
+                'Verify token is required: https://developers.facebook.com/docs/messenger-platform/getting-started/quick-start',
+            );
+        }
+
         this.bot = {
             id: '',
             name: '',
@@ -108,6 +120,13 @@ export class Bot extends EventEmitter {
         });
     }
 
+    /**
+     * Sends a request to the Facebook Graph API.
+     * @param {string} method - The HTTP method to use.
+     * @param {string} endpoint - The endpoint to send the request to.
+     * @param {Record<string, unknown>} requestBody - The request body to send.
+     * @returns {Promise<T>} - The response from the Facebook Graph API.
+     */
     public async sendRequest<T>(
         method: 'GET' | 'POST',
         endpoint: string,
@@ -123,12 +142,15 @@ export class Bot extends EventEmitter {
                 body: requestBody ? JSON.stringify(requestBody) : undefined,
             },
         );
+        const json = await response.json();
 
         if (!response.ok) {
-            throw new Error(`HTTP error!: ${response.statusText}`);
+            throw new Error(`HTTP error!: ${response.statusText}`, {
+                cause: json,
+            });
         }
 
-        return response.json() as Promise<T>;
+        return json as Promise<T>;
     }
 
     private async getAppInfo(): Promise<void> {
@@ -160,8 +182,12 @@ export class Bot extends EventEmitter {
      * @param {string} recipientId - The ID of the recipient.
      * @param {string} message - The text message to send.
      * @returns {Promise<void>}
+     * @throws {Error} If the message exceeds 2000 characters.
      */
     public async sendTextMessage(recipientId: string, message: string): Promise<void> {
+        if (message.length > 2000) {
+            throw new Error('Message exceeds 2000 character limit');
+        }
         return await this.sendRequest('POST', '/me/messages', {
             recipient: { id: recipientId },
             message: { text: message },
@@ -171,16 +197,16 @@ export class Bot extends EventEmitter {
     /**
      * Sends an attachment to a recipient.
      * @param {string} recipientId - The ID of the recipient.
-     * @param {string} type - The type of attachment to send. (image, video, audio, file)
+     * @param {'audio' | 'file' | 'image' | 'video' | 'template'} type - The type of attachment to send.
      * @param {string} url - The URL of the attachment to send.
-     * @param {boolean} isReusable - Whether the attachment is reusable.
+     * @param {boolean} isReusable - Whether the attachment is reusable. Defaults to true.
      * @returns {Promise<void>}
      */
     public async sendAttachment(
         recipientId: string,
-        type: 'image' | 'video' | 'audio' | 'file',
+        type: 'audio' | 'file' | 'image' | 'video' | 'template',
         url: string,
-        isReusable: boolean,
+        isReusable: boolean = true,
     ): Promise<void> {
         return await this.sendRequest('POST', 'me/messages', {
             recipient: { id: recipientId },
@@ -196,6 +222,12 @@ export class Bot extends EventEmitter {
         });
     }
 
+    /**
+     * Sets the typing status for a recipient.
+     * @param {string} recipientId - The ID of the recipient.
+     * @param {boolean} isTyping - Whether the bot is typing.
+     * @returns {Promise<void>}
+     */
     public async setTyping(recipientId: string, isTyping: boolean): Promise<void> {
         return await this.sendRequest('POST', '/me/messages', {
             recipient: { id: recipientId },

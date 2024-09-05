@@ -1,5 +1,7 @@
-import type { QuickReply, WebhookEvent } from '@/types';
+import type { WebhookEvent } from '@/types';
 
 export interface QuickReplyEvent extends WebhookEvent {
-    quick_reply: QuickReply;
+    quick_reply: {
+        payload: string;
+    };
 }

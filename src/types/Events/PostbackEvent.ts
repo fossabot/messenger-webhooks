@@ -1,5 +1,8 @@
-import type { Postback, WebhookEvent } from '@/types';
+import type { WebhookEvent } from '@/types';
 
 export interface PostbackEvent extends WebhookEvent {
-    postback: Postback;
+    postback: {
+        title: string;
+        payload: string;
+    };
 }
