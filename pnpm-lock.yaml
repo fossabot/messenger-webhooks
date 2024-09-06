@@ -44,6 +44,31 @@ importers:
                 specifier: ^5.5.4
                 version: 5.5.4
 
+    apps/examples:
+        dependencies:
+            '@pyyupsk/messenger-webhooks':
+                specifier: workspace:*
+                version: link:../../packages/messenger-webhooks
+            axios:
+                specifier: ^1.7.7
+                version: 1.7.7
+            dotenv:
+                specifier: ^16.4.5
+                version: 16.4.5
+        devDependencies:
+            '@repo/typescript-config':
+                specifier: workspace:*
+                version: link:../../packages/typescript-config
+            '@types/node':
+                specifier: ^22.5.4
+                version: 22.5.4
+            tsx:
+                specifier: ^4.19.0
+                version: 4.19.0
+            typescript:
+                specifier: ^5.5.4
+                version: 5.5.4
+
     packages/eslint-config:
         devDependencies:
             '@eslint/js':
@@ -85,7 +110,7 @@ importers:
                 version: 4.17.21
             tsup:
                 specifier: ^8.2.4
-                version: 8.2.4(jiti@1.21.6)(postcss@8.4.45)(typescript@5.5.4)(yaml@2.5.1)
+                version: 8.2.4(jiti@1.21.6)(postcss@8.4.45)(tsx@4.19.0)(typescript@5.5.4)(yaml@2.5.1)
             typescript:
                 specifier: ^5.5.4
                 version: 5.5.4
@@ -1420,6 +1445,18 @@ packages:
             }
         engines: { node: '>=12' }
 
+    asynckit@0.4.0:
+        resolution:
+            {
+                integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==,
+            }
+
+    axios@1.7.7:
+        resolution:
+            {
+                integrity: sha512-S4kL7XrjgBmvdGut0sN3yJxqYzrDOnivkBiN0OFs6hLiUam3UPvswUo0kqGyhqUZGEOytHyumEdXsAkgCOUf3Q==,
+            }
+
     balanced-match@1.0.2:
         resolution:
             {
@@ -1624,6 +1661,13 @@ packages:
                 integrity: sha512-IfEDxwoWIjkeXL1eXcDiow4UbKjhLdq6/EuSVR9GMN7KVH3r9gQ83e73hsz1Nd1T3ijd5xv1wcWRYO+D6kCI2w==,
             }
 
+    combined-stream@1.0.8:
+        resolution:
+            {
+                integrity: sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==,
+            }
+        engines: { node: '>= 0.8' }
+
     commander@12.1.0:
         resolution:
             {
@@ -1798,6 +1842,13 @@ packages:
             }
         engines: { node: '>= 0.4' }
 
+    delayed-stream@1.0.0:
+        resolution:
+            {
+                integrity: sha512-ZySD7Nf91aLB0RxL4KGrKHBXl7Eds1DAmEdcoVawXnLD7SDhpNgtuII2aAkg7a7QS41jxPSZ17p4VdGnMHk3MQ==,
+            }
+        engines: { node: '>=0.4.0' }
+
     depd@2.0.0:
         resolution:
             {
@@ -1832,6 +1883,13 @@ packages:
                 integrity: sha512-QM8q3zDe58hqUqjraQOmzZ1LIH9SWQJTlEKCH4kJ2oQvLZk7RbQXvtDM2XEq3fwkV9CCvvH4LA0AV+ogFsBM2Q==,
             }
         engines: { node: '>=8' }
+
+    dotenv@16.4.5:
+        resolution:
+            {
+                integrity: sha512-ZmdL2rui+eB2YwhsWzjInR8LldtZHGDoQ1ugH85ppHKwpUHL7j7rN0Ti9NCnGiQbhaZ11FpR+7ao1dNsmduNUg==,
+            }
+        engines: { node: '>=12' }
 
     eastasianwidth@0.2.0:
         resolution:
@@ -2243,12 +2301,31 @@ packages:
                 integrity: sha512-X8cqMLLie7KsNUDSdzeN8FYK9rEt4Dt67OsG/DNGnYTSDBG4uFAJFBnUeiV+zCVAvwFy56IjM9sH51jVaEhNxw==,
             }
 
+    follow-redirects@1.15.9:
+        resolution:
+            {
+                integrity: sha512-gew4GsXizNgdoRyqmyfMHyAmXsZDk6mHkSxZFCzW9gwlbtOW44CDtYavM+y+72qD/Vq2l550kMF52DT8fOLJqQ==,
+            }
+        engines: { node: '>=4.0' }
+        peerDependencies:
+            debug: '*'
+        peerDependenciesMeta:
+            debug:
+                optional: true
+
     foreground-child@3.3.0:
         resolution:
             {
                 integrity: sha512-Ld2g8rrAyMYFXBhEqMz8ZAHBi4J4uS1i/CxGMDnjyFWddMXLVcDp051DZfu+t7+ab7Wv6SMqpWmyFIj5UbfFvg==,
             }
         engines: { node: '>=14' }
+
+    form-data@4.0.0:
+        resolution:
+            {
+                integrity: sha512-ETEklSGi5t0QMZuiXoA/Q6vcnxcLQP5vdugSpuAyi6SVGi2clPPp+xgEhuMaHC+zGgn31Kd235W35f7Hykkaww==,
+            }
+        engines: { node: '>= 6' }
 
     forwarded@0.2.0:
         resolution:
@@ -2332,6 +2409,12 @@ packages:
                 integrity: sha512-VaUJspBffn/LMCJVoMvSAdmscJyS1auj5Zulnn5UoYcY531UWmdwhRWkcGKnGU93m5HSXP9LP2usOryrBtQowA==,
             }
         engines: { node: '>=16' }
+
+    get-tsconfig@4.8.0:
+        resolution:
+            {
+                integrity: sha512-Pgba6TExTZ0FJAn1qkJAjIeKoDJ3CsI2ChuLohJnZl/tTU8MVrq3b+2t5UOPfRa4RMsorClBjJALkJUMjG1PAw==,
+            }
 
     git-raw-commits@4.0.0:
         resolution:
@@ -3454,6 +3537,12 @@ packages:
             }
         engines: { node: '>= 0.10' }
 
+    proxy-from-env@1.1.0:
+        resolution:
+            {
+                integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==,
+            }
+
     pseudomap@1.0.2:
         resolution:
             {
@@ -3541,6 +3630,12 @@ packages:
                 integrity: sha512-qYg9KP24dD5qka9J47d0aVky0N+b4fTU89LN9iDnjB5waksiC49rvMB0PrUJQGoTmH50XPiqOvAjDfaijGxYZw==,
             }
         engines: { node: '>=8' }
+
+    resolve-pkg-maps@1.0.0:
+        resolution:
+            {
+                integrity: sha512-seS2Tj26TBVOC2NIc2rOe2y2ZO7efxITtLZcGSOnHHNOQ7CkiUBfw0Iw2ck6xkIhPwLhKNLS8BO+hEpngQlqzw==,
+            }
 
     restore-cursor@5.1.0:
         resolution:
@@ -4018,6 +4113,14 @@ packages:
                 optional: true
             typescript:
                 optional: true
+
+    tsx@4.19.0:
+        resolution:
+            {
+                integrity: sha512-bV30kM7bsLZKZIOCHeMNVMJ32/LuJzLVajkQI/qf92J2Qr08ueLQvW00PUZGiuLPP760UINwupgUj8qrSCPUKg==,
+            }
+        engines: { node: '>=18.0.0' }
+        hasBin: true
 
     turbo-darwin-64@2.1.1:
         resolution:
@@ -5174,6 +5277,16 @@ snapshots:
 
     assertion-error@2.0.1: {}
 
+    asynckit@0.4.0: {}
+
+    axios@1.7.7:
+        dependencies:
+            follow-redirects: 1.15.9
+            form-data: 4.0.0
+            proxy-from-env: 1.1.0
+        transitivePeerDependencies:
+            - debug
+
     balanced-match@1.0.2: {}
 
     better-path-resolve@1.0.0:
@@ -5304,6 +5417,10 @@ snapshots:
 
     colorette@2.0.20: {}
 
+    combined-stream@1.0.8:
+        dependencies:
+            delayed-stream: 1.0.0
+
     commander@12.1.0: {}
 
     commander@4.1.1: {}
@@ -5395,6 +5512,8 @@ snapshots:
             es-errors: 1.3.0
             gopd: 1.0.1
 
+    delayed-stream@1.0.0: {}
+
     depd@2.0.0: {}
 
     destroy@1.2.0: {}
@@ -5408,6 +5527,8 @@ snapshots:
     dot-prop@5.3.0:
         dependencies:
             is-obj: 2.0.0
+
+    dotenv@16.4.5: {}
 
     eastasianwidth@0.2.0: {}
 
@@ -5747,10 +5868,18 @@ snapshots:
 
     flatted@3.3.1: {}
 
+    follow-redirects@1.15.9: {}
+
     foreground-child@3.3.0:
         dependencies:
             cross-spawn: 7.0.3
             signal-exit: 4.1.0
+
+    form-data@4.0.0:
+        dependencies:
+            asynckit: 0.4.0
+            combined-stream: 1.0.8
+            mime-types: 2.1.35
 
     forwarded@0.2.0: {}
 
@@ -5790,6 +5919,10 @@ snapshots:
     get-stream@6.0.1: {}
 
     get-stream@8.0.1: {}
+
+    get-tsconfig@4.8.0:
+        dependencies:
+            resolve-pkg-maps: 1.0.0
 
     git-raw-commits@4.0.0:
         dependencies:
@@ -6282,12 +6415,13 @@ snapshots:
 
     pirates@4.0.6: {}
 
-    postcss-load-config@6.0.1(jiti@1.21.6)(postcss@8.4.45)(yaml@2.5.1):
+    postcss-load-config@6.0.1(jiti@1.21.6)(postcss@8.4.45)(tsx@4.19.0)(yaml@2.5.1):
         dependencies:
             lilconfig: 3.1.2
         optionalDependencies:
             jiti: 1.21.6
             postcss: 8.4.45
+            tsx: 4.19.0
             yaml: 2.5.1
 
     postcss@8.4.45:
@@ -6318,6 +6452,8 @@ snapshots:
         dependencies:
             forwarded: 0.2.0
             ipaddr.js: 1.9.1
+
+    proxy-from-env@1.1.0: {}
 
     pseudomap@1.0.2: {}
 
@@ -6358,6 +6494,8 @@ snapshots:
     resolve-from@4.0.0: {}
 
     resolve-from@5.0.0: {}
+
+    resolve-pkg-maps@1.0.0: {}
 
     restore-cursor@5.1.0:
         dependencies:
@@ -6611,7 +6749,7 @@ snapshots:
 
     tslib@2.7.0: {}
 
-    tsup@8.2.4(jiti@1.21.6)(postcss@8.4.45)(typescript@5.5.4)(yaml@2.5.1):
+    tsup@8.2.4(jiti@1.21.6)(postcss@8.4.45)(tsx@4.19.0)(typescript@5.5.4)(yaml@2.5.1):
         dependencies:
             bundle-require: 5.0.0(esbuild@0.23.1)
             cac: 6.7.14
@@ -6623,7 +6761,7 @@ snapshots:
             globby: 11.1.0
             joycon: 3.1.1
             picocolors: 1.1.0
-            postcss-load-config: 6.0.1(jiti@1.21.6)(postcss@8.4.45)(yaml@2.5.1)
+            postcss-load-config: 6.0.1(jiti@1.21.6)(postcss@8.4.45)(tsx@4.19.0)(yaml@2.5.1)
             resolve-from: 5.0.0
             rollup: 4.21.2
             source-map: 0.8.0-beta.0
@@ -6637,6 +6775,13 @@ snapshots:
             - supports-color
             - tsx
             - yaml
+
+    tsx@4.19.0:
+        dependencies:
+            esbuild: 0.23.1
+            get-tsconfig: 4.8.0
+        optionalDependencies:
+            fsevents: 2.3.3
 
     turbo-darwin-64@2.1.1:
         optional: true
