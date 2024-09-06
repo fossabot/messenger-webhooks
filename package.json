@@ -1,11 +1,11 @@
 {
     "name": "@pyyupsk/messenger-webhooks",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "type": "module",
     "description": "A simple and easy-to-use library for building Facebook Messenger bots with webhooks.",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/pyyupsk/messenger-webhooks.git"
+        "url": "https://github.com/pyyupsk/messenger-webhooks.git"
     },
     "author": "pyyupsk <pyyupsk@proton.me>",
     "license": "MIT",
@@ -27,6 +27,7 @@
         "express": "^4.19.2"
     },
     "devDependencies": {
+        "@changesets/cli": "^2.27.8",
         "@commitlint/cli": "^19.4.1",
         "@commitlint/config-conventional": "^19.4.1",
         "@eslint/js": "^9.9.1",
@@ -46,5 +47,8 @@
         "typescript": "^5.5.4",
         "typescript-eslint": "^8.4.0",
         "vitest": "^2.0.5"
+    },
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com"
     }
 }

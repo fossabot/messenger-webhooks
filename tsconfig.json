@@ -22,8 +22,7 @@
         "lib": ["ESNext"],
         "baseUrl": ".",
         "paths": {
-            "@/*": ["src/*"],
-            "@pyyupsk/messenger-webhooks": ["src/index.ts"] // This is for the dev server
+            "@/*": ["src/*"]
         }
     },
     "include": ["src/**/*.ts", "dev/**/*.ts", "__tests__/**/*.ts", "tsup.config.ts"],
