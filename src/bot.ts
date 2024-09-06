@@ -23,7 +23,7 @@ interface Options {
 
 /** Represents a Bot that integrates with the Facebook Messenger API. */
 export class Bot extends EventEmitter {
-    private readonly server: Express;
+    private server: Express;
     private readonly accessToken: string;
     private readonly verifyToken: string;
 
