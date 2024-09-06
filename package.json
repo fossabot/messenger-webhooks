@@ -5,7 +5,7 @@
     "description": "A simple and easy-to-use library for building Facebook Messenger bots with webhooks.",
     "repository": {
         "type": "git",
-        "url": "https://github.com/pyyupsk/messenger-webhooks.git"
+        "url": "git+https://github.com/pyyupsk/messenger-webhooks.git"
     },
     "author": "pyyupsk <pyyupsk@proton.me>",
     "license": "MIT",
@@ -47,8 +47,5 @@
         "typescript": "^5.5.4",
         "typescript-eslint": "^8.4.0",
         "vitest": "^2.0.5"
-    },
-    "publishConfig": {
-        "registry": "https://npm.pkg.github.com"
     }
 }
