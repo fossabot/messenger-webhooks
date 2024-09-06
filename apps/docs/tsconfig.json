@@ -1,0 +1,24 @@
+{
+    "extends": "@repo/typescript-config/base.json",
+    "compilerOptions": {
+        "baseUrl": ".",
+        "target": "ESNext",
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "forceConsistentCasingInFileNames": true,
+        "noEmit": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "jsx": "preserve",
+        "incremental": true,
+        "paths": {
+            "@/*": ["./*"]
+        },
+        "plugins": [
+            {
+                "name": "next"
+            }
+        ]
+    },
+    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "eslint.config.mjs"],
+    "exclude": ["node_modules"]
+}

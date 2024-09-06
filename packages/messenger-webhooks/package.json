@@ -15,7 +15,6 @@
     "scripts": {
         "build": "tsup",
         "lint": "eslint src",
-        "lint:fix": "eslint --fix src",
         "test": "vitest"
     },
     "dependencies": {

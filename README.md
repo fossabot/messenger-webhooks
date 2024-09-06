@@ -27,6 +27,7 @@
 -   **Event-Driven Architecture**: Built on an event-driven architecture, making it easy to listen for and respond to various events.
 -   **User-Friendly API**: Provides a convenient API for handling incoming events and sending messages.
 -   **Scalable**: Designed to handle multiple events efficiently, allowing for scalable chatbot applications.
+-   **TypeScript Support**: Includes type definitions for better development experience and fewer runtime errors.
 -   **Open Source**: Licensed under the MIT License, allowing for free use and modification.
 
 ## 🛠️ Installation
