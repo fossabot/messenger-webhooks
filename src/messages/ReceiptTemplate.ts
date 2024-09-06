@@ -94,18 +94,18 @@ export class ReceiptElement {
 }
 
 export class ReceiptTemplate {
-    private sharable?: boolean;
-    private recipient_name: string;
-    private merchant_name?: string;
-    private order_number: string;
-    private order_url?: string;
-    private currency: string;
-    private payment_method: string;
-    private timestamp?: number;
-    private elements: ReceiptElement[];
-    private address?: Address;
-    private summary: Summary;
-    private adjustments?: Adjustment[];
+    sharable?: boolean;
+    recipient_name: string;
+    merchant_name?: string;
+    order_number: string;
+    order_url?: string;
+    currency: string;
+    payment_method: string;
+    timestamp?: number;
+    elements: ReceiptElement[];
+    address?: Address;
+    summary: Summary;
+    adjustments?: Adjustment[];
 
     /**
      * Creates a new ReceiptTemplate.

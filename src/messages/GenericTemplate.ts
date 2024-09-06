@@ -9,7 +9,7 @@ export class GenericElement {
         url: string;
         webview_height_ratio: string;
     };
-    buttons?: Button[];
+    buttons: Button[] = [];
 
     /**
      * Creates a new GenericElement.
@@ -92,8 +92,8 @@ export class GenericElement {
 }
 
 export class GenericTemplate {
-    private elements: GenericElement[];
-    private sharable: boolean;
+    elements: GenericElement[] = [];
+    sharable: boolean;
 
     /**
      * Creates a new GenericTemplate.

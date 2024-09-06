@@ -6,7 +6,7 @@ export class MediaElement {
     media_type: MediaType;
     attachment_id?: string;
     url?: string;
-    buttons?: Button[];
+    buttons: Button[] = [];
 
     /**
      * Creates a new MediaElement.
