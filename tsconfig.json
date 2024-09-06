@@ -25,6 +25,12 @@
             "@/*": ["src/*"]
         }
     },
-    "include": ["src/**/*.ts", "dev/**/*.ts", "__tests__/**/*.ts", "tsup.config.ts"],
+    "include": [
+        "src/**/*.ts",
+        "examples/**/*.ts",
+        "dev/**/*.ts",
+        "__tests__/**/*.ts",
+        "tsup.config.ts"
+    ],
     "exclude": ["node_modules", "dist"]
 }
