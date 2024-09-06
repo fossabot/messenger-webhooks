@@ -27,32 +27,61 @@ export class ReceiptElement {
     currency?: string;
     image_url?: string;
 
+    /**
+     * Creates a new ReceiptElement.
+     * @param title - The title of the element.
+     * @param price - The price of the element.
+     */
     constructor(title: string, price: number) {
         this.title = title;
         this.price = price;
     }
 
+    /**
+     * Sets the subtitle of the ReceiptElement.
+     * @param subtitle - The subtitle to set.
+     * @returns The current instance of ReceiptElement.
+     */
     setSubtitle(subtitle: string): ReceiptElement {
         this.subtitle = subtitle;
         return this;
     }
 
+    /**
+     * Sets the quantity of the ReceiptElement.
+     * @param quantity - The quantity to set.
+     * @returns The current instance of ReceiptElement.
+     */
     setQuantity(quantity: number): ReceiptElement {
         this.quantity = quantity;
         return this;
     }
 
+    /**
+     * Sets the currency of the ReceiptElement.
+     * @param currency - The currency to set.
+     * @returns The current instance of ReceiptElement.
+     */
     setCurrency(currency: string): ReceiptElement {
         this.currency = currency;
         return this;
     }
 
+    /**
+     * Sets the image URL of the ReceiptElement.
+     * @param imageUrl - The image URL to set.
+     * @returns The current instance of ReceiptElement.
+     */
     setImageUrl(imageUrl: string): ReceiptElement {
         this.image_url = imageUrl;
         return this;
     }
 
-    toJSON() {
+    /**
+     * Converts the ReceiptElement into a JSON object.
+     * @returns The ReceiptElement as a JSON object.
+     */
+    toJSON(): object {
         return {
             title: this.title,
             subtitle: this.subtitle,
@@ -72,12 +101,21 @@ export class ReceiptTemplate {
     private order_url?: string;
     private currency: string;
     private payment_method: string;
-    private timestamp?: string;
+    private timestamp?: number;
     private elements: ReceiptElement[];
     private address?: Address;
     private summary: Summary;
     private adjustments?: Adjustment[];
 
+    /**
+     * Creates a new ReceiptTemplate.
+     * @param recipient_name - The name of the recipient.
+     * @param order_number - The order number.
+     * @param currency - The currency used.
+     * @param payment_method - The payment method used.
+     * @param options - Additional options for the ReceiptTemplate.
+     * @param options.sharable - Whether the template is sharable. Defaults to false.
+     */
     constructor(
         recipient_name: string,
         order_number: string,
@@ -94,48 +132,88 @@ export class ReceiptTemplate {
         this.summary = { total_cost: 0 };
     }
 
+    /**
+     * Sets the merchant name for the ReceiptTemplate.
+     * @param merchant_name - The merchant name to set.
+     * @returns The current instance of ReceiptTemplate.
+     */
     setMerchantName(merchant_name: string): ReceiptTemplate {
         this.merchant_name = merchant_name;
         return this;
     }
 
+    /**
+     * Sets the order URL for the ReceiptTemplate.
+     * @param order_url - The order URL to set.
+     * @returns The current instance of ReceiptTemplate.
+     */
     setOrderUrl(order_url: string): ReceiptTemplate {
         this.order_url = order_url;
         return this;
     }
 
-    setTimestamp(timestamp: string): ReceiptTemplate {
+    /**
+     * Sets the timestamp for the ReceiptTemplate.
+     * @param timestamp - The timestamp to set.
+     * @returns The current instance of ReceiptTemplate.
+     */
+    setTimestamp(timestamp: number): ReceiptTemplate {
         this.timestamp = timestamp;
         return this;
     }
 
+    /**
+     * Sets the address for the ReceiptTemplate.
+     * @param address - The address object to set.
+     * @returns The current instance of ReceiptTemplate.
+     */
     setAddress(address: Address): ReceiptTemplate {
         this.address = address;
         return this;
     }
 
+    /**
+     * Sets the summary for the ReceiptTemplate.
+     * @param summary - The summary object to set.
+     * @returns The current instance of ReceiptTemplate.
+     */
     setSummary(summary: Summary): ReceiptTemplate {
         this.summary = { ...this.summary, ...summary };
         return this;
     }
 
-    addAdjustment(adjustment: Adjustment): ReceiptTemplate {
+    /**
+     * Adds an adjustment to the ReceiptTemplate.
+     * @param adjustment - The adjustment object to add.
+     * @returns The current instance of ReceiptTemplate.
+     */
+    addAdjustment(adjustment: Adjustment[]): ReceiptTemplate {
         if (!this.adjustments) {
             this.adjustments = [];
         }
-        this.adjustments.push(adjustment);
+        this.adjustments.push(...adjustment);
         return this;
     }
 
-    addElement(element: ReceiptElement): ReceiptTemplate {
+    /**
+     * Adds an element to the ReceiptTemplate. A maximum of 100 elements can be added.
+     * @param element - The ReceiptElement to add.
+     * @returns The current instance of ReceiptTemplate.
+     * @throws Error if adding the element exceeds the maximum of 100 elements.
+     */
+    addElement(element: ReceiptElement[]): ReceiptTemplate {
         if (this.elements.length >= 100) {
             throw new Error('Receipt template supports a maximum of 100 elements');
         }
-        this.elements.push(element);
+        this.elements.push(...element);
         return this;
     }
 
-    toJSON() {
+    /**
+     * Converts the ReceiptTemplate into a JSON object.
+     * @returns The ReceiptTemplate as a JSON object.
+     */
+    toJSON(): object {
         return {
             attachment: {
                 type: 'template',

@@ -1,9 +1,4 @@
-interface Button {
-    type: string;
-    title: string;
-    url?: string;
-    payload?: string;
-}
+import type { Button } from './Button';
 
 export class GenericElement {
     title: string;
@@ -16,7 +11,12 @@ export class GenericElement {
     };
     buttons?: Button[];
 
-    constructor({ title }: { title: string }) {
+    /**
+     * Creates a new GenericElement.
+     * @param title - The title of the element. Must be 80 characters or less.
+     * @throws Error if the title exceeds 80 characters.
+     */
+    constructor(title: string) {
         if (title.length > 80) {
             throw new Error('Title must be 80 characters or less.');
         }
@@ -24,6 +24,12 @@ export class GenericElement {
         this.title = title;
     }
 
+    /**
+     * Sets the subtitle of the GenericElement.
+     * @param subtitle - The subtitle to set. Must be 80 characters or less.
+     * @returns The current instance of GenericElement.
+     * @throws Error if the subtitle exceeds 80 characters.
+     */
     setSubtitle(subtitle: string): GenericElement {
         if (subtitle.length > 80) {
             throw new Error('Subtitle must be 80 characters or less.');
@@ -32,11 +38,21 @@ export class GenericElement {
         return this;
     }
 
+    /**
+     * Sets the image URL of the GenericElement.
+     * @param image_url - The image URL to set.
+     * @returns The current instance of GenericElement.
+     */
     setImageUrl(image_url: string): GenericElement {
         this.image_url = image_url;
         return this;
     }
 
+    /**
+     * Sets the default action of the GenericElement.
+     * @param default_action - The default action object to set.
+     * @returns The current instance of GenericElement.
+     */
     setDefaultAction(default_action: {
         type: string;
         url: string;
@@ -46,6 +62,12 @@ export class GenericElement {
         return this;
     }
 
+    /**
+     * Adds buttons to the GenericElement. A maximum of 3 buttons can be added.
+     * @param buttons - An array of Button objects to add.
+     * @returns The current instance of GenericElement.
+     * @throws Error if adding the buttons exceeds the maximum of 3 buttons.
+     */
     addButtons(buttons: Button[]): GenericElement {
         if (this.buttons && this.buttons.length + buttons.length > 3) {
             throw new Error('Button template can have a maximum of 3 buttons.');
@@ -54,7 +76,11 @@ export class GenericElement {
         return this;
     }
 
-    toJSON() {
+    /**
+     * Converts the GenericElement into a JSON object.
+     * @returns The GenericElement as a JSON object.
+     */
+    toJSON(): object {
         return {
             title: this.title,
             subtitle: this.subtitle,
@@ -69,20 +95,35 @@ export class GenericTemplate {
     private elements: GenericElement[];
     private sharable: boolean;
 
+    /**
+     * Creates a new GenericTemplate.
+     * @param options - The options for creating the GenericTemplate.
+     * @param options.sharable - Whether the template is sharable. Defaults to false.
+     */
     constructor({ sharable = false }: { sharable?: boolean } = {}) {
         this.elements = [];
         this.sharable = sharable;
     }
 
-    addElement(element: GenericElement): GenericTemplate {
+    /**
+     * Adds an element to the GenericTemplate. A maximum of 10 elements can be added.
+     * @param element - The GenericElement to add.
+     * @returns The current instance of GenericTemplate.
+     * @throws Error if adding the element exceeds the maximum of 10 elements.
+     */
+    addElement(element: GenericElement[]): GenericTemplate {
         if (this.elements.length >= 10) {
             throw new Error('Generic template supports a maximum of 10 elements');
         }
-        this.elements.push(element);
+        this.elements.push(...element);
         return this;
     }
 
-    toJSON() {
+    /**
+     * Converts the GenericTemplate into a JSON object.
+     * @returns The GenericTemplate as a JSON object.
+     */
+    toJSON(): object {
         return {
             attachment: {
                 type: 'template',
