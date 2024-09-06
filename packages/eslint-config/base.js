@@ -5,8 +5,9 @@ import prettier from 'eslint-plugin-prettier';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
-export default [
+const baseConfig = [
     {
+        // extends: ['turbo'],
         plugins: {
             perfectionist,
             prettier,
@@ -28,7 +29,6 @@ export default [
                     destructuredArrayIgnorePattern: '^_',
                 },
             ],
-            '@typescript-eslint/consistent-type-imports': ['error', { prefer: 'type-imports' }],
             'prettier/prettier': 'warn',
         },
     },
@@ -40,9 +40,14 @@ export default [
                 project: './tsconfig.json',
             },
         },
+        rules: {
+            '@typescript-eslint/consistent-type-imports': ['error', { prefer: 'type-imports' }],
+        },
     },
     { languageOptions: { globals: globals.node } },
     pluginJs.configs.recommended,
     ...tseslint.configs.recommended,
     eslintConfigPrettier,
 ];
+
+export default baseConfig;

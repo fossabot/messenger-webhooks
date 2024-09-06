@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 
-import { MediaElement, MediaTemplate, URLButton, PostbackButton, CallButton } from '../src';
+import { MediaElement, MediaTemplate, URLButton, PostbackButton, CallButton } from '@lib';
 
 describe('MediaElement Tests', () => {
     it('should create a MediaElement with valid media_type', () => {

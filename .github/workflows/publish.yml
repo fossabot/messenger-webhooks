@@ -1,7 +1,7 @@
 name: 🚀 Publish Release
 on:
   workflow_run:
-    workflows: ['⚙️ Test']
+    workflows: ['⚙️ CI']
     branches:
       - main
     types:
@@ -35,12 +35,18 @@ jobs:
       - name: 🔍 Install dependencies
         run: pnpm install --frozen-lockfile
       - name: 🏗 Build project
-        run: pnpm build
+        run: pnpm build --filter=@pyyupsk/messenger-webhooks
+      - name: 📋 Copy files
+        run: |
+          cp CHANGELOG.md packages/messenger-webhooks/
+          cp CONTRIBUTING.md packages/messenger-webhooks/
+          cp LICENSE packages/messenger-webhooks/
+          cp README.md packages/messenger-webhooks/
       - name: 🚀 Publish release
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: pnpm changeset publish
+          publish: pnpm release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

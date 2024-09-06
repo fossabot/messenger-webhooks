@@ -1,6 +1,5 @@
+import { ButtonTemplate, URLButton, PostbackButton, CallButton } from '@lib';
 import { describe, it, expect } from 'vitest';
-
-import { ButtonTemplate, URLButton, PostbackButton, CallButton } from '../src';
 
 describe('ButtonTemplate Tests', () => {
     it('should create a ButtonTemplate with valid text', () => {

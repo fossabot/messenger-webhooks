@@ -1,6 +1,5 @@
+import { ReceiptElement, ReceiptTemplate } from '@lib';
 import { describe, it, expect } from 'vitest';
-
-import { ReceiptElement, ReceiptTemplate } from '../src';
 
 describe('ReceiptElement Tests', () => {
     it('should create a ReceiptElement with title and price', () => {

@@ -1,6 +1,5 @@
+import { QuickReply, QuickReplies } from '@lib';
 import { describe, it, expect } from 'vitest';
-
-import { QuickReply, QuickReplies } from '../src';
 
 describe('QuickReply Tests', () => {
     it('should create a QuickReply with a title', () => {

@@ -1,6 +1,5 @@
+import { URLButton, PostbackButton, CallButton } from '@lib';
 import { describe, it, expect } from 'vitest';
-
-import { URLButton, PostbackButton, CallButton } from '../src';
 
 describe('Button Classes Tests', () => {
     describe('URLButton', () => {

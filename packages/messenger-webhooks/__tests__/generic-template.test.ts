@@ -1,6 +1,5 @@
+import { GenericElement, GenericTemplate, URLButton, PostbackButton, CallButton } from '@lib';
 import { describe, it, expect } from 'vitest';
-
-import { GenericElement, GenericTemplate, URLButton, PostbackButton, CallButton } from '../src';
 
 describe('GenericElement Tests', () => {
     it('should create a GenericElement with valid title', () => {

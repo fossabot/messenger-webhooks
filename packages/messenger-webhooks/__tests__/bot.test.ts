@@ -1,12 +1,11 @@
 import type express from 'express';
 
 import { logger } from '@/utils';
+import { Bot } from '@lib';
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 
-import { Bot } from '../src';
-
 describe('Bot Class Tests', () => {
-    let bot: Bot;
+    let bot: InstanceType<typeof Bot>;
     let mockExpress: ReturnType<typeof express>;
     let mockFetch: ReturnType<typeof vi.fn>;
 
@@ -49,10 +48,9 @@ describe('Bot Class Tests', () => {
         expect(bot['verifyToken']).toBe(mockOptions.verifyToken);
     });
 
-    it('should log an error if accessToken is missing', () => {
+    it('should throw an error if accessToken is missing', () => {
         const badOptions = { ...mockOptions, accessToken: '' };
-        new Bot(badOptions); // Create new bot with bad options
-        expect(logger.error).toHaveBeenCalledWith(
+        expect(() => new Bot(badOptions)).toThrow(
             'Access token is required: https://developers.facebook.com/docs/messenger-platform/getting-started/quick-start',
         );
     });

@@ -1,4 +1,4 @@
-name: ⚙️ Test
+name: ⚙️ CI
 on:
   push:
     branches:
@@ -22,8 +22,8 @@ jobs:
       - name: 🔍 Install dependencies
         run: pnpm install --frozen-lockfile
       - name: 🧹 Lint
-        run: pnpm lint
+        run: pnpm lint --filter=@pyyupsk/messenger-webhooks
       - name: 🏗️ Build
-        run: pnpm build
+        run: pnpm build --filter=@pyyupsk/messenger-webhooks
       - name: 🧪 Test
-        run: pnpm test
+        run: pnpm test --filter=@pyyupsk/messenger-webhooks
