@@ -1,4 +1,3 @@
 {
-    "**/*.(ts|tsx|js|jsx)": ["turbo lint --fix"],
     "*": ["prettier --write"]
 }

@@ -7,7 +7,6 @@ import tseslint from 'typescript-eslint';
 
 const baseConfig = [
     {
-        // extends: ['turbo'],
         plugins: {
             perfectionist,
             prettier,

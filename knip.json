@@ -1,4 +1,9 @@
 {
-    "entry": ["src/index.ts"],
-    "project": ["src/**"]
+    "$schema": "https://unpkg.com/knip@latest/schema.json",
+    "workspaces": {
+        "packages/*": {
+            "entry": ["src/index.ts"],
+            "project": "**/*.{js,ts,jsx,tsx}"
+        }
+    }
 }

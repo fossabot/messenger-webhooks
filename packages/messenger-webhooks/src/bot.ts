@@ -48,13 +48,12 @@ export class Bot extends EventEmitter {
         this.verifyToken = options.verifyToken;
 
         if (!options.accessToken) {
-            throw new Error(
+            logger.error(
                 'Access token is required: https://developers.facebook.com/docs/messenger-platform/getting-started/quick-start',
             );
         }
-
         if (!options.verifyToken) {
-            throw new Error(
+            logger.error(
                 'Verify token is required: https://developers.facebook.com/docs/messenger-platform/getting-started/quick-start',
             );
         }
