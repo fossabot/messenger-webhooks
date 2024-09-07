@@ -1,8 +1,14 @@
 # @pyyupsk/messenger-webhooks
 
-## 2.0.0
+## 1.1.1
 
-### Major Changes
+### Patch Changes
+
+-   Update package.json to include exports field for better module resolution
+
+## 1.1.0
+
+### Minor Changes
 
 -   Added support for referral events and improved event type handling
 
