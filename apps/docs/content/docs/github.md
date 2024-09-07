@@ -7,6 +7,8 @@ The `@pyyupsk/messenger-webhooks` library is hosted on GitHub. You can find the 
 
 [GitHub Repository](https://github.com/pyyupsk/messenger-webhooks)
 
+This library is designed to work with the [Facebook Messenger Platform](https://developers.facebook.com/docs/messenger-platform/), providing an easy-to-use interface for building Messenger bots.
+
 ## Repository Overview
 
 The GitHub repository includes:

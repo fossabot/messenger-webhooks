@@ -73,3 +73,11 @@ bot.start();
 -   Run the script to start handling Messenger events.
 
 By using this library, developers can focus on building their bot’s logic rather than managing the intricacies of the Messenger API, making bot development more efficient and manageable.
+
+## External Resources
+
+For more detailed information about the Facebook Messenger Platform, please refer to the official Facebook Messenger Platform documentation:
+
+[Facebook Messenger Platform Documentation](https://developers.facebook.com/docs/messenger-platform/)
+
+This external resource provides comprehensive information about the Messenger Platform's features, capabilities, and best practices for bot development.

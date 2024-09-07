@@ -11,7 +11,7 @@ export function GET(_: NextRequest, { params }: { params: { slug: string[] } }) 
         title: page.data.title,
         description: page.data.description,
         site: <div style={{ fontSize: 50 }}>@pyyupsk/messenger-webhooks</div>,
-        primaryTextColor: 'rgb(151, 53, 237)',
+        primaryTextColor: 'rgb(255, 255, 255)',
         primaryColor: 'rgb(151, 53, 237)',
         icon: (
             <svg

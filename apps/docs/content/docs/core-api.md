@@ -5,7 +5,7 @@ description: Explore @pyyupsk/messenger-webhooks Bot class for building scalable
 
 ## Bot Class
 
-The `Bot` class provides the main interface for interacting with the Facebook Messenger API. It simplifies the process of setting up a webhook server, handling incoming messages, and sending responses.
+The `Bot` class provides the main interface for interacting with the [Facebook Messenger API](https://developers.facebook.com/docs/messenger-platform/). It simplifies the process of setting up a webhook server, handling incoming messages, and sending responses.
 
 ### Constructor
 
