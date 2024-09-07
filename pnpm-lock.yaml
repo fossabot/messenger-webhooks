@@ -147,9 +147,6 @@ importers:
 
     packages/messenger-webhooks:
         dependencies:
-            chalk:
-                specifier: ^5.3.0
-                version: 5.3.0
             express:
                 specifier: ^4.19.2
                 version: 4.19.2
@@ -169,6 +166,19 @@ importers:
             typescript:
                 specifier: ^5.5.4
                 version: 5.5.4
+
+    packages/tests:
+        dependencies:
+            express:
+                specifier: ^4.19.2
+                version: 4.19.2
+        devDependencies:
+            '@pyyupsk/messenger-webhooks':
+                specifier: workspace:*
+                version: link:../messenger-webhooks
+            '@types/express':
+                specifier: ^4.17.21
+                version: 4.17.21
             vitest:
                 specifier: ^2.0.5
                 version: 2.0.5(@types/node@22.5.4)

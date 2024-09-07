@@ -1,6 +1,12 @@
-import chalk from 'chalk';
+export const colors = {
+    reset: '\x1b[0m',
+    gray: '\x1b[90m',
+    blue: '\x1b[34m',
+    yellow: '\x1b[33m',
+    red: '\x1b[31m',
+};
 
-const prefix = chalk.gray('[bot]');
+const prefix = `${colors.gray}[bot]${colors.reset}`;
 
 /** A logger utility for logging messages with different severity levels. */
 export const logger = {
@@ -17,7 +23,7 @@ export const logger = {
      * @param args - The message or values to log.
      */
     info: (...args: unknown[]): void => {
-        console.log(prefix, chalk.blue('[info]'), ...args);
+        console.log(prefix, `${colors.blue}[info]${colors.reset}`, ...args);
     },
 
     /**
@@ -25,7 +31,7 @@ export const logger = {
      * @param args - The message or values to log.
      */
     warn: (...args: unknown[]): void => {
-        console.log(prefix, chalk.yellow('[warn]'), ...args);
+        console.log(prefix, `${colors.yellow}[warn]${colors.reset}`, ...args);
     },
 
     /**
@@ -33,7 +39,7 @@ export const logger = {
      * @param args - The message or values to log.
      */
     error: (...args: unknown[]): void => {
-        console.log(prefix, chalk.red('[error]'), ...args);
+        console.log(prefix, `${colors.red}[error]${colors.reset}`, ...args);
         process.exit(1); // Exit the process with an error code
     },
 };

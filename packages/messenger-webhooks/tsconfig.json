@@ -8,10 +8,18 @@
         "lib": ["ESNext"],
         "baseUrl": ".",
         "paths": {
-            "@/*": ["src/*"],
-            "@lib": ["./dist"]
+            "@/*": ["src/*"]
         }
     },
-    "include": ["src/**/*.ts", "__tests__/**/*.ts", "tsup.config.ts"],
+    "include": [
+        "src/**/*.ts",
+        "__tests__/**/*.ts",
+        "tsup.config.ts",
+        "../tests/bot.test.ts",
+        "../tests/button-template.test.ts",
+        "../tests/button.test.ts",
+        "../tests/generic-template.test.ts",
+        "../tests/media-template.test.ts"
+    ],
     "exclude": ["node_modules", "dist"]
 }

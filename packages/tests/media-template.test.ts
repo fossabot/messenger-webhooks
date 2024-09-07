@@ -1,6 +1,12 @@
 import { describe, it, expect } from 'vitest';
 
-import { MediaElement, MediaTemplate, URLButton, PostbackButton, CallButton } from '@lib';
+import {
+    MediaElement,
+    MediaTemplate,
+    URLButton,
+    PostbackButton,
+    CallButton,
+} from '@pyyupsk/messenger-webhooks';
 
 describe('MediaElement Tests', () => {
     it('should create a MediaElement with valid media_type', () => {

@@ -1,11 +1,4 @@
 /**
- * Defines the types of buttons that can be used in a template.
- */
-export type ButtonType = 'web_url' | 'postback' | 'phone_number';
-
-export type Button = URLButton | PostbackButton | CallButton;
-
-/**
  * Represents a URL button that opens a web page when clicked.
  * Extends the Button class.
  */
@@ -84,76 +77,6 @@ export class URLButton {
             messenger_extensions: this.messenger_extensions,
             fallback_url: this.fallback_url,
             webview_share_button: this.webview_share_button,
-        };
-    }
-}
-
-/**
- * Represents a Postback button that triggers an event to the server when clicked.
- * Extends the Button class.
- */
-export class PostbackButton {
-    title: string;
-    payload: string;
-
-    /**
-     * Creates a new PostbackButton.
-     * @param title - The title of the button.
-     * @param payload - The payload to send to the server when clicked.
-     */
-    constructor(title: string, payload: string) {
-        if (title.length > 20) {
-            throw new Error('Button title must be 20 characters or less.');
-        }
-
-        this.title = title;
-        this.payload = payload;
-    }
-
-    /**
-     * Converts the PostbackButton object to a JSON representation.
-     * @returns The JSON representation of the PostbackButton.
-     */
-    toJSON(): object {
-        return {
-            type: 'postback',
-            title: this.title,
-            payload: this.payload,
-        };
-    }
-}
-
-/**
- * Represents a Call button that initiates a phone call when clicked.
- * Extends the Button class.
- */
-export class CallButton {
-    title: string;
-    phone_number: string;
-
-    /**
-     * Creates a new CallButton.
-     * @param title - The title of the button.
-     * @param phone_number - The phone number to call when clicked.
-     */
-    constructor(title: string, phone_number: string) {
-        if (title.length > 20) {
-            throw new Error('Button title must be 20 characters or less.');
-        }
-
-        this.title = title;
-        this.phone_number = phone_number;
-    }
-
-    /**
-     * Converts the CallButton object to a JSON representation.
-     * @returns The JSON representation of the CallButton.
-     */
-    toJSON(): object {
-        return {
-            type: 'phone_number',
-            title: this.title,
-            payload: this.phone_number,
         };
     }
 }

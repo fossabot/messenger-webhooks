@@ -1,4 +1,4 @@
-import { ReceiptElement, ReceiptTemplate } from '@lib';
+import { ReceiptElement, ReceiptTemplate } from '@pyyupsk/messenger-webhooks';
 import { describe, it, expect } from 'vitest';
 
 describe('ReceiptElement Tests', () => {

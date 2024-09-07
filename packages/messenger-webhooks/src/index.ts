@@ -5,5 +5,5 @@
 
 export * from './bot';
 export * from './types';
-export * from './messages';
+export * from './messaging';
 export * from './utils';

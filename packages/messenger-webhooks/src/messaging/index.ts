@@ -4,9 +4,6 @@
  * that can be sent through the Facebook Messenger platform.
  */
 
-export * from './Button';
-export * from './ButtonTemplate';
-export * from './GenericTemplate';
-export * from './MediaTemplate';
+export * from './buttons';
+export * from './templates';
 export * from './QuickReplies';
-export * from './ReceiptTemplate';

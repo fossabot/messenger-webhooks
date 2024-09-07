@@ -1,6 +1,6 @@
 import type express from 'express';
 
-import { Bot, logger } from '@lib';
+import { Bot, logger } from '@pyyupsk/messenger-webhooks';
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 
 describe('Bot Class Tests', () => {
@@ -55,6 +55,64 @@ describe('Bot Class Tests', () => {
         );
     });
 
+    it('should throw an error if verifyToken is missing', () => {
+        const badOptions = { ...mockOptions, verifyToken: '' };
+        new Bot(badOptions);
+        expect(logger.error).toHaveBeenCalledWith(
+            'Verify token is required: https://developers.facebook.com/docs/messenger-platform/getting-started/quick-start',
+        );
+    });
+
+    it('should handle invalid webhook subscription mode', () => {
+        bot['server'] = mockExpress;
+
+        const mockReq = {
+            query: {
+                'hub.mode': 'invalid_mode',
+                'hub.challenge': '1234',
+                'hub.verify_token': bot['verifyToken'],
+            },
+        } as unknown as express.Request;
+
+        const mockRes = {
+            status: vi.fn().mockReturnThis(),
+            send: vi.fn(),
+        } as unknown as express.Response;
+
+        bot.start();
+
+        // @ts-ignore
+        const getHandler = mockExpress.get.mock.calls[0][1];
+        getHandler(mockReq, mockRes);
+
+        expect(mockRes.status).toHaveBeenCalledWith(403);
+        expect(mockRes.send).toHaveBeenCalledWith('Forbidden');
+    });
+
+    it('should handle missing hub.verify_token in webhook GET request', () => {
+        const mockReq = {
+            query: {
+                'hub.mode': 'subscribe',
+                'hub.challenge': '1234',
+            },
+        } as unknown as express.Request;
+
+        const mockRes = {
+            status: vi.fn().mockReturnThis(),
+            send: vi.fn(),
+        } as unknown as express.Response;
+
+        bot['server'] = mockExpress;
+        bot.start();
+
+        // @ts-ignore
+        const getHandler = mockExpress.get.mock.calls[0][1];
+        getHandler(mockReq, mockRes);
+
+        expect(mockRes.status).toHaveBeenCalledWith(400);
+        expect(mockRes.send).toHaveBeenCalledWith('Bad Request');
+    });
+
     it('should start the server and set up the webhook endpoints', () => {
         bot['server'] = mockExpress;
 
@@ -79,6 +137,69 @@ describe('Bot Class Tests', () => {
         expect(bot.bot.version).toBe('v20.0');
     });
 
+    it('should emit an event when receiving a message in POST webhook', () => {
+        const mockReq = {
+            body: {
+                object: 'page',
+                entry: [
+                    {
+                        messaging: [{ message: 'Hello', sender: { id: '123' } }],
+                    },
+                ],
+            },
+        } as unknown as express.Request;
+
+        const mockRes = {
+            sendStatus: vi.fn(),
+        } as unknown as express.Response;
+
+        bot['server'] = mockExpress;
+        const emitSpy = vi.spyOn(bot, 'emit');
+
+        bot.start();
+
+        // @ts-ignore
+        const postHandler = mockExpress.post.mock.calls[0][1];
+        postHandler(mockReq, mockRes);
+
+        expect(emitSpy).toHaveBeenCalledWith('message', {
+            message: 'Hello',
+            sender: { id: '123' },
+        });
+        expect(mockRes.sendStatus).toHaveBeenCalledWith(200);
+    });
+
+    it('should not emit an event if the object is not "page" in webhook POST', () => {
+        const mockReq = {
+            body: {
+                object: 'not_page',
+                entry: [
+                    {
+                        messaging: [{ message: 'Hello', sender: { id: '123' } }],
+                    },
+                ],
+            },
+        } as unknown as express.Request;
+
+        const mockRes = {
+            status: vi.fn().mockReturnThis(),
+            send: vi.fn(),
+        } as unknown as express.Response;
+
+        bot['server'] = mockExpress;
+        const emitSpy = vi.spyOn(bot, 'emit');
+
+        bot.start();
+
+        // @ts-ignore
+        const postHandler = mockExpress.post.mock.calls[0][1];
+        postHandler(mockReq, mockRes);
+
+        expect(emitSpy).not.toHaveBeenCalled();
+        expect(mockRes.status).toHaveBeenCalledWith(400);
+        expect(mockRes.send).toHaveBeenCalledWith('Bad Request');
+    });
+
     it('should call sendRequest with correct parameters when sending a message', async () => {
         const sendRequestSpy = vi.spyOn(bot, 'sendRequest').mockResolvedValueOnce({});
 
@@ -99,6 +220,13 @@ describe('Bot Class Tests', () => {
         await expect(bot.sendTextMessage('123', longMessage)).rejects.toThrow(
             'Message exceeds 2000 character limit',
         );
+    });
+
+    it('should throw an error when sending an attachment with invalid type', async () => {
+        const invalidType = 'invalid_type' as any; // force an invalid type
+        await expect(
+            bot.sendAttachment('123', invalidType, 'http://example.com/file'),
+        ).rejects.toThrow();
     });
 
     it('should call fetch with the correct URL and method in sendRequest', async () => {

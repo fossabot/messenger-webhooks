@@ -1,4 +1,10 @@
-import { GenericElement, GenericTemplate, URLButton, PostbackButton, CallButton } from '@lib';
+import {
+    GenericElement,
+    GenericTemplate,
+    URLButton,
+    PostbackButton,
+    CallButton,
+} from '@pyyupsk/messenger-webhooks';
 import { describe, it, expect } from 'vitest';
 
 describe('GenericElement Tests', () => {

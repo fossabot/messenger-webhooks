@@ -2,8 +2,7 @@ import type { EventType } from '@/types';
 import type { Express, Request, Response } from 'express';
 
 import { GRAPH_URL } from '@/constants';
-import { determineEventType, logger } from '@/utils';
-import chalk from 'chalk';
+import { colors, determineEventType, logger } from '@/utils';
 import EventEmitter from 'events';
 import express, { json } from 'express';
 
@@ -122,9 +121,7 @@ export class Bot extends EventEmitter {
             }
 
             logger.info(
-                `${this.bot.name} ${chalk.gray(`(${this.bot.id})`)} is running on port ${chalk.yellow(this.bot.port)} ${chalk.gray(
-                    `(${this.bot.endpoint})`,
-                )}`,
+                `${this.bot.name} ${colors.gray}(${this.bot.id})${colors.reset} is running on port ${colors.yellow}${this.bot.port}${colors.reset} ${colors.gray}(${this.bot.endpoint})${colors.reset}`,
             );
         });
     }

@@ -1,4 +1,4 @@
-import type { CallButton, PostbackButton, URLButton } from '@/messages';
+import type { CallButton, PostbackButton, URLButton } from '@/messaging';
 import type { WebhookEvent } from '@/types';
 
 export interface TemplateEvent extends WebhookEvent {

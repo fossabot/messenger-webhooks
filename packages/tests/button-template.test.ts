@@ -1,4 +1,4 @@
-import { ButtonTemplate, URLButton, PostbackButton, CallButton } from '@lib';
+import { ButtonTemplate, URLButton, PostbackButton, CallButton } from '@pyyupsk/messenger-webhooks';
 import { describe, it, expect } from 'vitest';
 
 describe('ButtonTemplate Tests', () => {

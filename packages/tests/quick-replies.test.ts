@@ -1,4 +1,4 @@
-import { QuickReply, QuickReplies } from '@lib';
+import { QuickReply, QuickReplies } from '@pyyupsk/messenger-webhooks';
 import { describe, it, expect } from 'vitest';
 
 describe('QuickReply Tests', () => {

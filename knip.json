@@ -4,6 +4,10 @@
         "packages/*": {
             "entry": ["src/index.ts"],
             "project": "**/*.{js,ts,jsx,tsx}"
+        },
+        "apps/*": {
+            "entry": ["src/index.ts"],
+            "project": "**/*.{js,ts,jsx,tsx}"
         }
     }
 }

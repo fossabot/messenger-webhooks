@@ -1,5 +1,11 @@
 # @pyyupsk/messenger-webhooks
 
+## 1.1.2
+
+### Patch Changes
+
+-   Refactored project structure, moved tests to separate package, updated dependencies and configurations
+
 ## 1.1.1
 
 ### Patch Changes

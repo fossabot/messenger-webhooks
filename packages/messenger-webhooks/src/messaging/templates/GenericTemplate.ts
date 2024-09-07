@@ -1,4 +1,4 @@
-import type { Button } from './Button';
+import type { Button } from '@/messaging';
 
 export class GenericElement {
     title: string;

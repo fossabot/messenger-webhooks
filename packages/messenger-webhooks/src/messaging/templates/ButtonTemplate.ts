@@ -1,4 +1,4 @@
-import type { Button } from './Button';
+import type { Button } from '@/messaging';
 
 /**
  * Represents a ButtonTemplate that includes a message with up to 3 buttons.
