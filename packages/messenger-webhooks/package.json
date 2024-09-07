@@ -1,12 +1,14 @@
 {
     "name": "@pyyupsk/messenger-webhooks",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "type": "module",
     "description": "A simple and easy-to-use library for building Facebook Messenger bots with webhooks.",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/pyyupsk/messenger-webhooks.git"
     },
+    "homepage": "https://messenger-webhooks.vercel.app/",
+    "bugs": "https://github.com/pyyupsk/messenger-webhooks/issues",
     "author": "pyyupsk <pyyupsk@proton.me>",
     "license": "MIT",
     "main": "dist/index.js",

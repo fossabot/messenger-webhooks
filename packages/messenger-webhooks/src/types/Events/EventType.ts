@@ -1,1 +1,7 @@
-export type EventType = 'message' | 'postback' | 'quick_reply' | 'template';
+export type EventType =
+    | 'message'
+    | 'postback'
+    | 'quick_reply'
+    | 'template'
+    | 'referral'
+    | 'unknown';
