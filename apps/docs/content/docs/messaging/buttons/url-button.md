@@ -1,5 +1,6 @@
 ---
 title: URL Button
+description: Create URL buttons in Messenger bots to open web pages with @pyyupsk/messenger-webhooks library.
 ---
 
 The `URLButton` class creates a button that opens a web page when clicked. This button is useful for directing users to external resources or websites.

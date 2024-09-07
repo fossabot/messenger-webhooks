@@ -1,5 +1,6 @@
 ---
 title: Generic Template
+description: Design rich, interactive messages with the versatile Generic Template for bots.
 ---
 
 The `GenericTemplate` consists of a series of `GenericElement` instances, each representing an item or a card within the template. Each `GenericElement` can include a title, subtitle, image, default action, and up to three interactive buttons.

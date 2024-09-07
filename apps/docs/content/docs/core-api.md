@@ -1,5 +1,6 @@
 ---
 title: Core API
+description: Explore @pyyupsk/messenger-webhooks Bot class for building scalable Facebook Messenger bots.
 ---
 
 ## Bot Class
@@ -15,11 +16,11 @@ constructor(options: Options)
 ### Parameters:
 
 -   `options`: Configuration options for the Bot instance. The `Options` interface includes:
-    -   `accessToken` (string): The Facebook App access token.
-    -   `verifyToken` (string): The verification token for webhook setup.
-    -   `port` (number, optional): The port number for the server (default: 8080).
-    -   `endpoint` (string, optional): The webhook endpoint (default: '/webhook').
-    -   `version` (string, optional): The Facebook Graph API version (default: 'v19.0').
+-   `accessToken` (string): The Facebook App access token.
+-   `verifyToken` (string): The verification token for webhook setup.
+-   `port` (number, optional): The port number for the server (default: 8080).
+-   `endpoint` (string, optional): The webhook endpoint (default: '/webhook').
+-   `version` (string, optional): The Facebook Graph API version (default: 'v19.0').
 
 ## start
 
@@ -46,12 +47,9 @@ Sends an HTTP request to the Facebook Graph API.
 
 ### Parameters:
 
-    -   `method`: The HTTP method to use ('GET' or 'POST').
-    -   `endpoint`: The API endpoint to request.
-    -   `requestBody` (optional): The body of the request for 'POST' requests.
-
--   **Returns**: A promise that resolves with the response data.
--   **Throws**: Will throw an error if the response is not ok.
+-   `method`: The HTTP method to use ('GET' or 'POST').
+-   `endpoint`: The API endpoint to request.
+-   `requestBody` (optional): The body of the request for 'POST' requests.
 
 ## sendMessage
 
@@ -63,8 +61,8 @@ Sends a message to a recipient.
 
 ### Parameters:
 
-    -   `recipientId`: The ID of the recipient.
-    -   `message`: The message object to send.
+-   `recipientId`: The ID of the recipient.
+-   `message`: The message object to send.
 
 ## sendTextMessage
 
@@ -76,8 +74,8 @@ Sends a text message to a recipient.
 
 ### Parameters:
 
-    -   `recipientId`: The ID of the recipient.
-    -   `message`: The text message to send.
+-   `recipientId`: The ID of the recipient.
+-   `message`: The text message to send.
 
 -   **Throws**: Will throw an error if the message exceeds 2000 characters.
 
@@ -96,10 +94,10 @@ Sends an attachment (audio, file, image, video, or template) to a recipient.
 
 ### Parameters:
 
-    -   `recipientId`: The ID of the recipient.
-    -   `type`: The type of the attachment.
-    -   `url`: The URL of the attachment.
-    -   `isReusable` (optional): Whether the attachment is reusable (default: true).
+-   `recipientId`: The ID of the recipient.
+-   `type`: The type of the attachment.
+-   `url`: The URL of the attachment.
+-   `isReusable` (optional): Whether the attachment is reusable (default: true).
 
 ## setTyping
 
@@ -111,8 +109,8 @@ Sets the typing status of the recipient.
 
 ### Parameters:
 
-    -   `recipientId`: The ID of the recipient.
-    -   `isTyping`: Whether the recipient is typing (`true` or `false`).
+-   `recipientId`: The ID of the recipient.
+-   `isTyping`: Whether the recipient is typing (`true` or `false`).
 
 ## Additional Information
 

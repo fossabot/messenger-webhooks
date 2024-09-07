@@ -1,5 +1,6 @@
 ---
 title: Receipt Template
+description: Create comprehensive receipt messages for purchases, featuring items, summaries, and order details.
 ---
 
 The `ReceiptTemplate` class is designed to create detailed receipt messages for users. It includes information such as the recipient's name, order details, and a list of purchased items. This template can also include adjustments and address information.

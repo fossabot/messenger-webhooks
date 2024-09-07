@@ -1,5 +1,6 @@
 ---
 title: Quick Replies
+description: Learn to create interactive Quick Replies for your Messenger bot with ease.
 ---
 
 The `QuickReplies` template consists of a main text prompt and a list of `QuickReply` buttons. Each `QuickReply` can have a title, an optional payload, and an optional image URL.

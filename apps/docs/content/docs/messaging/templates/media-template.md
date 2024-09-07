@@ -1,5 +1,6 @@
 ---
 title: Media Template
+description: Enhance user interaction with media-rich templates featuring images or videos.
 ---
 
 The `MediaTemplate` consists of a series of `MediaElement` instances. Each `MediaElement` can include a media type (image or video), an attachment ID or URL, and up to three interactive buttons.

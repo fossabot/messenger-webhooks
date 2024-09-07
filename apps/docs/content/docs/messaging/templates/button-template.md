@@ -1,5 +1,6 @@
 ---
 title: Button Template
+description: Build engaging messages with interactive buttons using the ButtonTemplate class.
 ---
 
 The `ButtonTemplate` class enables you to display a text message with up to three interactive buttons. Each button can be a URL button, postback button, or call button. This template is ideal for presenting choices to users or guiding them to take specific actions.

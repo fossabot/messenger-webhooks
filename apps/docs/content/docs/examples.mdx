@@ -1,0 +1,99 @@
+---
+title: Examples
+description: Explore examples and usage scenarios for @pyyupsk/messenger-webhooks.
+---
+
+import { File, Folder, Files } from 'fumadocs-ui/components/files';
+
+Explore practical examples of how to use the `@pyyupsk/messenger-webhooks` library. These examples illustrate common use cases and provide a starting point for building your own Messenger bots.
+
+## Weather Bot Example
+
+The Weather Bot example demonstrates how to create a simple bot that responds with weather information for a specified city. This example uses the `@pyyupsk/messenger-webhooks` library to interact with the Messenger Platform.
+
+### Project Structure
+
+<Files>
+    <Folder name="examples" defaultOpen>
+        <Folder name="src" defaultOpen>
+            <File name="index.ts" />
+            <File name="weatherService.ts" />
+        </Folder>
+        <File name="README.md" />
+        <File name="package.json" />
+        <File name="tsconfig.json" />
+    </Folder>
+</Files>
+
+### Setup
+
+Follow these steps to set up and run the Weather Bot example:
+
+1. **Clone the Repository**:
+
+    ```bash
+    git clone https://github.com/pyyupsk/messenger-webhooks.git
+    ```
+
+2. **Navigate to the Examples Directory**:
+
+    ```bash
+    cd messenger-webhooks/apps/examples
+    ```
+
+3. **Install Dependencies**:
+
+    ```bash
+    npm install
+    ```
+
+4. **Set Up Your Environment Variables**:
+
+    Create a `.env` file in the root of the project with the following variables:
+
+    ```
+    ACCESS_TOKEN=your_facebook_page_access_token
+    VERIFY_TOKEN=your_webhook_verify_token
+    ```
+
+    Replace `your_facebook_page_access_token` and `your_webhook_verify_token` with your actual Facebook Page Access Token and Webhook Verify Token.
+
+5. **Build the Project**:
+
+    ```bash
+    npm run build
+    ```
+
+6. **Start the Bot**:
+
+    ```bash
+    npm start
+    ```
+
+### Usage
+
+Once the bot is running and properly configured with Facebook Messenger:
+
+1. Send a message to your Facebook Page with a city name or place.
+2. The bot will respond with the current weather information for that location.
+
+### Development
+
+To run the bot in development mode with hot reloading:
+
+```bash
+npm run dev
+```
+
+This command starts the bot with hot reloading enabled, allowing you to make changes to the code and see the updates in real-time without restarting the bot.
+
+### Additional Information
+
+-   **`index.ts`**: The entry point for the bot application, which sets up the bot and handles incoming messages.
+-   **`weatherService.ts`**: Contains the logic for fetching weather information and formatting it for the user.
+
+For more details or to contribute to the example projects, check out the repository or create an issue if you encounter any problems.
+
+---
+
+Feel free to explore and adapt the example code to fit your needs. Happy coding!

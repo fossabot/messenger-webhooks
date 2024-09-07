@@ -1,4 +1,5 @@
 import { createPreset } from 'fumadocs-ui/tailwind-plugin';
+import { fontFamily } from 'tailwindcss/defaultTheme';
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -9,5 +10,13 @@ export default {
         './mdx-components.{ts,tsx}',
         './node_modules/fumadocs-ui/dist/**/*.js',
     ],
+    theme: {
+        extend: {
+            fontFamily: {
+                sans: ['var(--font-sans)', ...fontFamily.sans],
+                mono: ['var(--font-mono)', ...fontFamily.mono],
+            },
+        },
+    },
     presets: [createPreset()],
 };

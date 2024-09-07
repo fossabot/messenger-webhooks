@@ -18,9 +18,6 @@
     </p>
 </div>
 
-> [!WARNING]
-> This library is currently in development and is not yet stable.
-
 ## 🎯 Features
 
 -   **Simplified Integration**: Easily integrate Facebook Messenger webhook handling into Node.js applications.
@@ -103,7 +100,7 @@ bot.sendTextMessage(senderId, 'Your message text');
 
 ## 🛠️ Advanced Usage
 
-For advanced use cases, refer to the [API documentation](https://pyyupsk.github.io/messenger-webhooks/) for more detailed examples and options.
+For advanced use cases, refer to the [API documentation](https://messenger-webhooks.vercel.app/) for more detailed examples and options.
 
 ## 🔧 Configuration
 
