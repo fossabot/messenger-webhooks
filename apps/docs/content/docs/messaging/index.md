@@ -3,7 +3,7 @@ title: Messaging
 description: Use @pyyupsk/messenger-webhooks library to send text, images, audio, videos, files, and templates on Messenger.
 ---
 
-To send messages to a user on Messenger, the conversation must be initiated by that user. The `@pyyupsk/messenger-webhooks` library provides the `sendMessage` method for sending different types of messages, each with its own content and structure.
+To send messages to a user on Messenger, the conversation must be initiated by that user. The [`@pyyupsk/messenger-webhooks`](https://www.npmjs.com/package/@pyyupsk/messenger-webhooks) library provides the `sendMessage` method for sending different types of messages, each with its own content and structure.
 
 ## Content Types
 

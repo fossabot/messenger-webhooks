@@ -3,7 +3,7 @@ title: Events
 description: Manage Message, Postback, Quick Reply, and more events with @pyyupsk/messenger-webhooks library.
 ---
 
-The `@pyyupsk/messenger-webhooks` library provides a robust mechanism for handling different types of events that occur on [Facebook Messenger](https://developers.facebook.com/docs/messenger-platform/reference/webhook-events/). When users interact with your Messenger bot, various events are triggered, and your bot can respond to these events using the library’s event handling system.
+The [`@pyyupsk/messenger-webhooks`](https://www.npmjs.com/package/@pyyupsk/messenger-webhooks) library provides a robust mechanism for handling different types of events that occur on [Facebook Messenger](https://developers.facebook.com/docs/messenger-platform/reference/webhook-events/). When users interact with your Messenger bot, various events are triggered, and your bot can respond to these events using the library’s event handling system.
 
 ## Event Handling
 

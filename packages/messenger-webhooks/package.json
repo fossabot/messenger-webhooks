@@ -20,6 +20,13 @@
         }
     },
     "types": "dist/index.d.ts",
+    "keywords": [
+        "messenger",
+        "webhooks",
+        "facebook",
+        "bot",
+        "library"
+    ],
     "scripts": {
         "build": "tsup",
         "lint": "eslint src"

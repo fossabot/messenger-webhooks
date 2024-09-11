@@ -3,9 +3,10 @@ title: GitHub Repository
 description: Access the @pyyupsk/messenger-webhooks GitHub repository for source code and issues.
 ---
 
-The `@pyyupsk/messenger-webhooks` library is hosted on GitHub. You can find the repository for this project at the following URL:
+The [`@pyyupsk/messenger-webhooks`](https://www.npmjs.com/package/@pyyupsk/messenger-webhooks) library is hosted on GitHub. You can find the repository for this project at the following URL:
 
 [GitHub Repository](https://github.com/pyyupsk/messenger-webhooks)
+[NPM Package](https://www.npmjs.com/package/@pyyupsk/messenger-webhooks)
 
 This library is designed to work with the [Facebook Messenger Platform](https://developers.facebook.com/docs/messenger-platform/), providing an easy-to-use interface for building Messenger bots.
 
@@ -13,7 +14,7 @@ This library is designed to work with the [Facebook Messenger Platform](https://
 
 The GitHub repository includes:
 
--   **Source Code**: All the code for the `@pyyupsk/messenger-webhooks` library.
+-   **Source Code**: All the code for the [`@pyyupsk/messenger-webhooks`](https://www.npmjs.com/package/@pyyupsk/messenger-webhooks) library.
 -   **Documentation**: Detailed documentation and usage examples.
 -   **Examples**: Example projects and usage scenarios.
 -   **Issues**: A place to report bugs or request new features.
@@ -56,7 +57,7 @@ To get started with the repository, follow these steps:
 
 ## Contributing
 
-We welcome contributions to the `@pyyupsk/messenger-webhooks` library. If you'd like to contribute, please follow these guidelines:
+We welcome contributions to the [`@pyyupsk/messenger-webhooks`](https://www.npmjs.com/package/@pyyupsk/messenger-webhooks) library. If you'd like to contribute, please follow these guidelines:
 
 1. **Fork the Repository**: Create your own copy of the repository by forking it on GitHub.
 2. **Create a Branch**: Create a new branch for your changes.
@@ -78,12 +79,12 @@ Provide as much detail as possible, including steps to reproduce the issue, scre
 
 ## License
 
-The `@pyyupsk/messenger-webhooks` library is licensed under the [MIT License](https://opensource.org/licenses/MIT). See the `LICENSE` file in the repository for more details.
+The [`@pyyupsk/messenger-webhooks`](https://www.npmjs.com/package/@pyyupsk/messenger-webhooks) library is licensed under the [MIT License](https://opensource.org/licenses/MIT). See the `LICENSE` file in the repository for more details.
 
 ## Contact
 
-For questions or support, you can reach out to the maintainers via the repository or by email at [pyyupsk@proton.me].
+For questions or support, you can reach out to the maintainers via the repository or by email at [pyyupsk@proton.me](mailto:pyyupsk@proton.me).
 
 ---
 
-Thank you for using `@pyyupsk/messenger-webhooks`! We appreciate your support and contributions.
+Thank you for using [`@pyyupsk/messenger-webhooks`](https://www.npmjs.com/package/@pyyupsk/messenger-webhooks)! We appreciate your support and contributions.

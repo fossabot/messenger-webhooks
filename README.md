@@ -18,6 +18,9 @@
     </p>
 </div>
 
+> [!WARNING]  
+> This is not an official library of Facebook. Use at your own risk.
+
 ## 🎯 Features
 
 -   **Simplified Integration**: Easily integrate Facebook Messenger webhook handling into Node.js applications.
@@ -37,7 +40,7 @@ npm install @pyyupsk/messenger-webhooks
 
 ## 🚀 Quick Start
 
-Here’s a basic example of how to use the `@pyyupsk/messenger-webhooks` library to set up a simple chatbot:
+Here’s a basic example of how to use the [`@pyyupsk/messenger-webhooks`](https://www.npmjs.com/package/@pyyupsk/messenger-webhooks) library to set up a simple chatbot:
 
 ```typescript
 import { Bot, MessageEvent } from '@pyyupsk/messenger-webhooks';
@@ -116,4 +119,4 @@ This project is licensed under the [MIT License](LICENSE). See the LICENSE file 
 
 ---
 
-Happy coding with **@pyyupsk/messenger-webhooks**! 🚀
+Happy coding with [**@pyyupsk/messenger-webhooks**](https://www.npmjs.com/package/@pyyupsk/messenger-webhooks)! 🚀
