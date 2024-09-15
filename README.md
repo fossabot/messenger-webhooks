@@ -23,12 +23,12 @@
 
 ## 🎯 Features
 
--   **Simplified Integration**: Easily integrate Facebook Messenger webhook handling into Node.js applications.
--   **Event-Driven Architecture**: Built on an event-driven architecture, making it easy to listen for and respond to various events.
--   **User-Friendly API**: Provides a convenient API for handling incoming events and sending messages.
--   **Scalable**: Designed to handle multiple events efficiently, allowing for scalable chatbot applications.
--   **TypeScript Support**: Includes type definitions for better development experience and fewer runtime errors.
--   **Open Source**: Licensed under the MIT License, allowing for free use and modification.
+- **Simplified Integration**: Easily integrate Facebook Messenger webhook handling into Node.js applications.
+- **Event-Driven Architecture**: Built on an event-driven architecture, making it easy to listen for and respond to various events.
+- **User-Friendly API**: Provides a convenient API for handling incoming events and sending messages.
+- **Scalable**: Designed to handle multiple events efficiently, allowing for scalable chatbot applications.
+- **TypeScript Support**: Includes type definitions for better development experience and fewer runtime errors.
+- **Open Source**: Licensed under the MIT License, allowing for free use and modification.
 
 ## 🛠️ Installation
 
@@ -46,14 +46,14 @@ Here’s a basic example of how to use the [`@pyyupsk/messenger-webhooks`](https
 import { Bot, MessageEvent } from '@pyyupsk/messenger-webhooks';
 
 const bot = new Bot({
-    accessToken: 'YOUR_ACCESS_TOKEN',
-    verifyToken: 'YOUR_VERIFY_TOKEN',
+  accessToken: 'YOUR_ACCESS_TOKEN',
+  verifyToken: 'YOUR_VERIFY_TOKEN',
 });
 
 bot.on('message', (event: MessageEvent) => {
-    const { sender, message } = event;
+  const { sender, message } = event;
 
-    bot.sendTextMessage(sender.id, `You wrote: ${message.text}`);
+  bot.sendTextMessage(sender.id, `You wrote: ${message.text}`);
 });
 
 bot.start();
@@ -73,23 +73,23 @@ When you start the bot, you should see output similar to the following:
 
 The `Bot` class is initialized with an object containing the following options:
 
--   `accessToken` **(required)**: Your Facebook Page's access token.
--   `verifyToken` **(required)**: The verification token you set up for webhook validation.
--   `port` **(optional)**: The port number to run the server on. Defaults to `8080`.
--   `endpoint` **(optional)**: The endpoint to handle webhook events. Defaults to `/webhook`.
--   `version` **(optional)**: The version of the [Facebook Graph API](https://developers.facebook.com/docs/graph-api/changelog#available-graph-api-versions) to use. Defaults to `v19.0`.
+- `accessToken` **(required)**: Your Facebook Page's access token.
+- `verifyToken` **(required)**: The verification token you set up for webhook validation.
+- `port` **(optional)**: The port number to run the server on. Defaults to `8080`.
+- `endpoint` **(optional)**: The endpoint to handle webhook events. Defaults to `/webhook`.
+- `version` **(optional)**: The version of the [Facebook Graph API](https://developers.facebook.com/docs/graph-api/changelog#available-graph-api-versions) to use. Defaults to `v19.0`.
 
 ### Event Handling
 
 The `Bot` instance uses an event-driven architecture, allowing you to listen for various events:
 
--   **`message`**: Triggered when a user sends a message to your bot.
+- **`message`**: Triggered when a user sends a message to your bot.
 
 Example:
 
 ```typescript
 bot.on('message', (event: MessageEvent) => {
-    // Handle incoming message
+  // Handle incoming message
 });
 ```
 

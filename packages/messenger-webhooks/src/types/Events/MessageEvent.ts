@@ -7,5 +7,6 @@ export interface MessageEvent extends WebhookEvent {
         quick_reply?: {
             payload: string;
         };
+        is_echo?: boolean;
     };
 }

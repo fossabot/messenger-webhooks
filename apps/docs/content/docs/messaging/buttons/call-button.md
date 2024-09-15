@@ -7,8 +7,8 @@ The `CallButton` class creates a button that initiates a phone call when clicked
 
 ## Properties
 
--   **title**: The title of the button. Must be 20 characters or less.
--   **phone_number**: The phone number to call when the button is clicked.
+- **title**: The title of the button. Must be 20 characters or less.
+- **phone_number**: The phone number to call when the button is clicked.
 
 ## Example
 
@@ -20,8 +20,8 @@ const button = new CallButton('Call Us', '+1234567890');
 
 ```json
 {
-    "type": "phone_number",
-    "title": "Call Us",
-    "payload": "+1234567890"
+  "type": "phone_number",
+  "title": "Call Us",
+  "payload": "+1234567890"
 }
 ```

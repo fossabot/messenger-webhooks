@@ -7,8 +7,8 @@ The `PostbackButton` class creates a button that sends a payload to your server 
 
 ## Properties
 
--   **title**: The title of the button. Must be 20 characters or less.
--   **payload**: The payload to send to the server when the button is clicked.
+- **title**: The title of the button. Must be 20 characters or less.
+- **payload**: The payload to send to the server when the button is clicked.
 
 ## Example
 
@@ -20,8 +20,8 @@ const button = new PostbackButton('Confirm', 'CONFIRM_PAYLOAD');
 
 ```json
 {
-    "type": "postback",
-    "title": "Confirm",
-    "payload": "CONFIRM_PAYLOAD"
+  "type": "postback",
+  "title": "Confirm",
+  "payload": "CONFIRM_PAYLOAD"
 }
 ```

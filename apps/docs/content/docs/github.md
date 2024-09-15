@@ -14,11 +14,11 @@ This library is designed to work with the [Facebook Messenger Platform](https://
 
 The GitHub repository includes:
 
--   **Source Code**: All the code for the [`@pyyupsk/messenger-webhooks`](https://www.npmjs.com/package/@pyyupsk/messenger-webhooks) library.
--   **Documentation**: Detailed documentation and usage examples.
--   **Examples**: Example projects and usage scenarios.
--   **Issues**: A place to report bugs or request new features.
--   **Pull Requests**: Contributions from the community or your own changes.
+- **Source Code**: All the code for the [`@pyyupsk/messenger-webhooks`](https://www.npmjs.com/package/@pyyupsk/messenger-webhooks) library.
+- **Documentation**: Detailed documentation and usage examples.
+- **Examples**: Example projects and usage scenarios.
+- **Issues**: A place to report bugs or request new features.
+- **Pull Requests**: Contributions from the community or your own changes.
 
 ## Getting Started
 
@@ -26,34 +26,34 @@ To get started with the repository, follow these steps:
 
 1. **Clone the Repository**:
 
-    ```bash
-    git clone https://github.com/pyyupsk/messenger-webhooks.git
-    ```
+   ```bash
+   git clone https://github.com/pyyupsk/messenger-webhooks.git
+   ```
 
 2. **Install Dependencies**:
 
-    Navigate to the project directory and install the necessary dependencies:
+   Navigate to the project directory and install the necessary dependencies:
 
-    ```bash
-    cd messenger-webhooks
-    npm install
-    ```
+   ```bash
+   cd messenger-webhooks
+   npm install
+   ```
 
 3. **Build the Project** (if applicable):
 
-    If the project requires building, run:
+   If the project requires building, run:
 
-    ```bash
-    npm run build
-    ```
+   ```bash
+   npm run build
+   ```
 
 4. **Run Tests** (if applicable):
 
-    To ensure everything is working correctly, run:
+   To ensure everything is working correctly, run:
 
-    ```bash
-    npm test
-    ```
+   ```bash
+   npm test
+   ```
 
 ## Contributing
 
@@ -62,9 +62,9 @@ We welcome contributions to the [`@pyyupsk/messenger-webhooks`](https://www.npmj
 1. **Fork the Repository**: Create your own copy of the repository by forking it on GitHub.
 2. **Create a Branch**: Create a new branch for your changes.
 
-    ```bash
-    git checkout -b feature/your-feature-name
-    ```
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
 
 3. **Make Changes**: Implement your changes or new features.
 4. **Submit a Pull Request**: Push your changes to your forked repository and submit a pull request to the main repository.

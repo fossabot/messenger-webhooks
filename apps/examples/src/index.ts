@@ -13,6 +13,8 @@ const bot = new Bot({
 bot.on('message', async (event: MessageEvent) => {
     const { sender, message } = event;
 
+    if (message.is_echo) return;
+
     if (message.text) {
         const place = message.text.trim();
         try {
@@ -31,6 +33,10 @@ bot.on('message', async (event: MessageEvent) => {
             'Please send me a place to get the weather information.',
         );
     }
+});
+
+bot.on('echo', async (event: MessageEvent) => {
+    console.log(event);
 });
 
 bot.start();

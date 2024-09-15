@@ -4,4 +4,5 @@ export type EventType =
     | 'quick_reply'
     | 'template'
     | 'referral'
+    | 'echo'
     | 'unknown';

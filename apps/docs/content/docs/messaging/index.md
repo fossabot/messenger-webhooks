@@ -9,12 +9,12 @@ To send messages to a user on Messenger, the conversation must be initiated by t
 
 The `sendMessage` method supports several types of content, including:
 
--   **Text**
--   **Images**
--   **Audio**
--   **Videos**
--   **Files**
--   **Templates**
+- **Text**
+- **Images**
+- **Audio**
+- **Videos**
+- **Files**
+- **Templates**
 
 ### Sending Messages
 
@@ -24,33 +24,33 @@ All messages are sent using the `sendMessage` method in the `Bot` class. Here is
 
 ```typescript title="index.ts"
 import {
-    Bot,
-    GenericTemplate,
-    GenericElement,
-    URLButton,
-    PostbackButton,
+  Bot,
+  GenericTemplate,
+  GenericElement,
+  URLButton,
+  PostbackButton,
 } from '@pyyupsk/messenger-webhooks';
 
 const bot = new Bot({
-    accessToken: process.env.ACCESS_TOKEN || '',
-    verifyToken: process.env.VERIFY_TOKEN || '',
+  accessToken: process.env.ACCESS_TOKEN || '',
+  verifyToken: process.env.VERIFY_TOKEN || '',
 });
 
 const element1 = new GenericElement('Product 1')
-    .setSubtitle('Best product ever!')
-    .setImageUrl('https://example.com/image1.jpg')
-    .addButtons([
-        new URLButton('View Details', 'https://example.com/product1'),
-        new PostbackButton('Buy Now', 'BUY_PRODUCT_1'),
-    ]);
+  .setSubtitle('Best product ever!')
+  .setImageUrl('https://example.com/image1.jpg')
+  .addButtons([
+    new URLButton('View Details', 'https://example.com/product1'),
+    new PostbackButton('Buy Now', 'BUY_PRODUCT_1'),
+  ]);
 
 const element2 = new GenericElement('Product 2')
-    .setSubtitle('Another great product!')
-    .setImageUrl('https://example.com/image2.jpg')
-    .addButtons([
-        new URLButton('View Details', 'https://example.com/product2'),
-        new PostbackButton('Buy Now', 'BUY_PRODUCT_2'),
-    ]);
+  .setSubtitle('Another great product!')
+  .setImageUrl('https://example.com/image2.jpg')
+  .addButtons([
+    new URLButton('View Details', 'https://example.com/product2'),
+    new PostbackButton('Buy Now', 'BUY_PRODUCT_2'),
+  ]);
 
 const genericTemplate = new GenericTemplate({ sharable: true }).addElement([element1, element2]);
 
@@ -63,16 +63,16 @@ The `sendMessage` method constructs the following JSON payload for the above exa
 
 ```json
 {
-    "attachment": {
-        "type": "template",
-        "payload": {
-            "template_type": "generic",
-            "elements": [
-                // ...
-            ],
-            "sharable": true
-        }
+  "attachment": {
+    "type": "template",
+    "payload": {
+      "template_type": "generic",
+      "elements": [
+        // ...
+      ],
+      "sharable": true
     }
+  }
 }
 ```
 

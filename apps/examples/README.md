@@ -6,24 +6,24 @@ This is a simple weather bot example using the `@pyyupsk/messenger-webhooks` lib
 
 1. Clone this repository
 2. Install dependencies:
-    ```bash
-    npm install
-    ```
+   ```bash
+   npm install
+   ```
 3. Set up your environment variables:
 
-    - `ACCESS_TOKEN`: Your Facebook Page Access Token
-    - `VERIFY_TOKEN`: Your Webhook Verify Token
+   - `ACCESS_TOKEN`: Your Facebook Page Access Token
+   - `VERIFY_TOKEN`: Your Webhook Verify Token
 
 4. Build the project:
 
-    ```bash
-    npm run build
-    ```
+   ```bash
+   npm run build
+   ```
 
 5. Start the bot:
-    ```bash
-    npm start
-    ```
+   ```bash
+   npm start
+   ```
 
 ## Usage
 

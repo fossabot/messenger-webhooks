@@ -143,7 +143,14 @@ describe('Bot Class Tests', () => {
                 object: 'page',
                 entry: [
                     {
-                        messaging: [{ message: 'Hello', sender: { id: '123' } }],
+                        messaging: [
+                            {
+                                sender: { id: '123' },
+                                message: {
+                                    text: 'Hello',
+                                },
+                            },
+                        ],
                     },
                 ],
             },
@@ -163,8 +170,8 @@ describe('Bot Class Tests', () => {
         postHandler(mockReq, mockRes);
 
         expect(emitSpy).toHaveBeenCalledWith('message', {
-            message: 'Hello',
             sender: { id: '123' },
+            message: { text: 'Hello' },
         });
         expect(mockRes.sendStatus).toHaveBeenCalledWith(200);
     });

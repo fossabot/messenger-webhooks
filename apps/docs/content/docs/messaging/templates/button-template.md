@@ -7,20 +7,20 @@ The `ButtonTemplate` class enables you to display a text message with up to thre
 
 ## Properties
 
--   **text**: The text to display in the template. Must be 640 characters or less.
--   **buttons**: An array of buttons (up to 3) to include in the template.
+- **text**: The text to display in the template. Must be 640 characters or less.
+- **buttons**: An array of buttons (up to 3) to include in the template.
 
 ## Methods
 
--   **constructor(text: string)**: Initializes a new `ButtonTemplate` with the specified text.
+- **constructor(text: string)**: Initializes a new `ButtonTemplate` with the specified text.
 
-    -   Throws an error if the text exceeds 640 characters.
+  - Throws an error if the text exceeds 640 characters.
 
--   **addButtons(buttons: Button[])**: Adds buttons to the template.
+- **addButtons(buttons: Button[])**: Adds buttons to the template.
 
-    -   Throws an error if adding the buttons exceeds the maximum limit of 3 buttons.
+  - Throws an error if adding the buttons exceeds the maximum limit of 3 buttons.
 
--   **toJSON()**: Converts the `ButtonTemplate` into the JSON format required for sending the template in a messaging platform.
+- **toJSON()**: Converts the `ButtonTemplate` into the JSON format required for sending the template in a messaging platform.
 
 ## Example Usage
 
@@ -29,9 +29,9 @@ import { ButtonTemplate } from '@pyyupsk/messenger-webhooks';
 import { URLButton, PostbackButton } from '@pyyupsk/messenger-webhooks';
 
 const buttonTemplate = new ButtonTemplate('Choose an option:').addButtons([
-    new URLButton('Visit Website', 'https://example.com'),
-    new PostbackButton('Confirm', 'CONFIRM_PAYLOAD'),
-    new CallButton('Call Us', '+1234567890'),
+  new URLButton('Visit Website', 'https://example.com'),
+  new PostbackButton('Confirm', 'CONFIRM_PAYLOAD'),
+  new CallButton('Call Us', '+1234567890'),
 ]);
 ```
 
@@ -39,30 +39,30 @@ const buttonTemplate = new ButtonTemplate('Choose an option:').addButtons([
 
 ```json
 {
-    "attachment": {
-        "type": "template",
-        "payload": {
-            "template_type": "button",
-            "text": "Choose an option:",
-            "buttons": [
-                {
-                    "type": "web_url",
-                    "title": "Visit Website",
-                    "url": "https://example.com"
-                },
-                {
-                    "type": "postback",
-                    "title": "Confirm",
-                    "payload": "CONFIRM_PAYLOAD"
-                },
-                {
-                    "type": "phone_number",
-                    "title": "Call Us",
-                    "payload": "+1234567890"
-                }
-            ]
+  "attachment": {
+    "type": "template",
+    "payload": {
+      "template_type": "button",
+      "text": "Choose an option:",
+      "buttons": [
+        {
+          "type": "web_url",
+          "title": "Visit Website",
+          "url": "https://example.com"
+        },
+        {
+          "type": "postback",
+          "title": "Confirm",
+          "payload": "CONFIRM_PAYLOAD"
+        },
+        {
+          "type": "phone_number",
+          "title": "Call Us",
+          "payload": "+1234567890"
         }
+      ]
     }
+  }
 }
 ```
 

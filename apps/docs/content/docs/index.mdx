@@ -8,19 +8,19 @@ import { Callout } from 'fumadocs-ui/components/callout';
 ## Overview
 
 <Callout title="Warning" type="warn">
-    This is not an official library of Facebook. Use at your own risk.
+  This is not an official library of Facebook. Use at your own risk.
 </Callout>
 
 The [`@pyyupsk/messenger-webhooks`](https://www.npmjs.com/package/@pyyupsk/messenger-webhooks) library is designed to simplify the process of building Facebook Messenger bots using webhooks. This library provides an easy-to-use interface for handling Messenger events and sending messages back to users, streamlining the interaction with the Messenger Platform API.
 
 ### Key Features
 
--   **Simplified Integration**: Easily integrate Facebook Messenger webhook handling into Node.js applications.
--   **Event-Driven Architecture**: Built on an event-driven architecture, making it easy to listen for and respond to various events.
--   **User-Friendly API**: Provides a convenient API for handling incoming events and sending messages.
--   **Scalable**: Designed to handle multiple events efficiently, allowing for scalable chatbot applications.
--   **TypeScript Support**: Includes type definitions for better development experience and fewer runtime errors.
--   **Open Source**: Licensed under the MIT License, allowing for free use and modification.
+- **Simplified Integration**: Easily integrate Facebook Messenger webhook handling into Node.js applications.
+- **Event-Driven Architecture**: Built on an event-driven architecture, making it easy to listen for and respond to various events.
+- **User-Friendly API**: Provides a convenient API for handling incoming events and sending messages.
+- **Scalable**: Designed to handle multiple events efficiently, allowing for scalable chatbot applications.
+- **TypeScript Support**: Includes type definitions for better development experience and fewer runtime errors.
+- **Open Source**: Licensed under the MIT License, allowing for free use and modification.
 
 ## Getting Started
 
@@ -48,18 +48,18 @@ import { Bot, MessageEvent } from '@pyyupsk/messenger-webhooks';
 import 'dotenv/config';
 
 const bot = new Bot({
-    accessToken: process.env.ACCESS_TOKEN || '',
-    verifyToken: process.env.VERIFY_TOKEN || '',
+  accessToken: process.env.ACCESS_TOKEN || '',
+  verifyToken: process.env.VERIFY_TOKEN || '',
 });
 
 bot.on('message', async (event: MessageEvent) => {
-    const { sender, message } = event;
+  const { sender, message } = event;
 
-    if (message.text) {
-        await bot.sendTextMessage(sender.id, `You said: ${message.text}`);
-    } else {
-        await bot.sendTextMessage(sender.id, 'Please send a text message.');
-    }
+  if (message.text) {
+    await bot.sendTextMessage(sender.id, `You said: ${message.text}`);
+  } else {
+    await bot.sendTextMessage(sender.id, 'Please send a text message.');
+  }
 });
 
 bot.start();
@@ -74,9 +74,9 @@ bot.start();
 
 ### Notes
 
--   Make sure to set up your `ACCESS_TOKEN` and `VERIFY_TOKEN` in a `.env` file or as environment variables.
--   Ensure your server is publicly accessible and correctly configured in your Facebook App settings.
--   Run the script to start handling Messenger events.
+- Make sure to set up your `ACCESS_TOKEN` and `VERIFY_TOKEN` in a `.env` file or as environment variables.
+- Ensure your server is publicly accessible and correctly configured in your Facebook App settings.
+- Run the script to start handling Messenger events.
 
 By using this library, developers can focus on building their bot’s logic rather than managing the intricacies of the Messenger API, making bot development more efficient and manageable.
 
