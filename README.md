@@ -9,6 +9,7 @@
         <a href="https://github.com/pyyupsk/messenger-webhooks/blob/main/LICENSE">
             <img src="https://img.shields.io/npm/dt/@pyyupsk/messenger-webhooks.svg" alt="Downloads" />
         </a>
+<a href="https://app.fossa.com/projects/git%2Bgithub.com%2Fpyyupsk%2Fmessenger-webhooks?ref=badge_shield" alt="FOSSA Status"><img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Fpyyupsk%2Fmessenger-webhooks.svg?type=shield"/></a>
         <a href="https://github.com/pyyupsk/messenger-webhooks/blob/main/LICENSE">
             <img src="https://img.shields.io/npm/l/@pyyupsk/messenger-webhooks.svg" alt="License" />
         </a>
@@ -20,6 +21,9 @@
 
 > [!WARNING]  
 > This is not an official library of Facebook. Use at your own risk.
+
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fpyyupsk%2Fmessenger-webhooks.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fpyyupsk%2Fmessenger-webhooks?ref=badge_large)
 
 ## 🎯 Features
 
